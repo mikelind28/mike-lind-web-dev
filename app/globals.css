@@ -1,26 +1,40 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faaf00;
+  --foreground: #140f00;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme='dark'] {
+  --background: #140f00;
+  --foreground: #faaf00;
+}
+
+html {
+  font-family: monospace;
+  font-size: 16px;
+  letter-spacing: 2%;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+}
+
+h2.home-page {
+  font-size: 2rem;
+  text-align: center;
+  text-decoration: underline 5% dotted var(--foreground);
+  text-underline-offset: 20%;
+}
+
+h2.portfolio-item {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
 }
