@@ -12,7 +12,7 @@ export default function Divider() {
   const shouldReduceMotion = useReducedMotion();
   return (
     <motion.svg
-      className="w-full scale-x-150 my-4"
+      className="my-4 w-full scale-x-150"
       xmlns="http://www.w3.org/2000/svg"
       height="35"
       fill="none"
@@ -23,13 +23,13 @@ export default function Divider() {
       }}
       transition={{
         x: {
-          duration: 4,
+          duration: 3,
           repeat: Infinity,
           repeatType: "loop",
           ease: "linear",
         },
         scaleY: {
-          duration: 4,
+          duration: 3,
           repeat: Infinity,
           repeatType: "mirror",
           ease: "easeInOut",
@@ -56,7 +56,7 @@ export default function Divider() {
               d: shouldReduceMotion ? d1 : d2,
             }}
             transition={{
-              duration: 2,
+              duration: 1.5,
               repeat: Infinity,
               repeatType: "mirror",
               ease: "easeInOut",

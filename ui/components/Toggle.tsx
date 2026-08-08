@@ -16,32 +16,51 @@ export default function Toggle() {
   if (!mounted) {
     // Render a theme-neutral placeholder that matches on server & client
     return (
-      <div className="relative flex items-center justify-between gap-3 p-1 rounded-full outline-2 outline-foreground w-18 h-9" />
+      <div className="outline-foreground relative flex h-9 w-18 items-center justify-between gap-3 rounded-full p-1 outline-2" />
     );
   }
-  
+
   return (
-    <div
-      className="relative flex items-center justify-between gap-3 p-1 rounded-full cursor-pointer outline-2 outline-foreground"
-      style={resolvedTheme === 'dark' ? { backgroundColor: "var(--background)" } : { backgroundColor: "var(--foreground)" }}
-      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+    <button
+      className="outline-foreground relative flex cursor-pointer items-center justify-between gap-3 rounded-full p-1 outline-2 focus-visible:outline-blue-400 "
+      style={
+        resolvedTheme === "dark"
+          ? { backgroundColor: "var(--background)" }
+          : { backgroundColor: "var(--foreground)" }
+      }
+      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       role="switch"
       aria-label="Toggle dark mode"
     >
       <motion.div
-        className="size-9 rounded-full absolute z-0"
-        style={resolvedTheme === 'dark' ? { backgroundColor: "var(--foreground)", border: "1px solid var(--foreground)" } : { backgroundColor: "var(--background)", border: "1px solid var(--background)" }}
+        className="absolute z-0 size-9 rounded-full"
+        style={
+          resolvedTheme === "dark"
+            ? {
+                backgroundColor: "var(--foreground)",
+                border: "1px solid var(--foreground)",
+              }
+            : {
+                backgroundColor: "var(--background)",
+                border: "1px solid var(--background)",
+              }
+        }
         initial={false}
-        animate={{ left: resolvedTheme === 'dark' ? "calc(100% - var(--spacing) * 9)" : "0px" }}
+        animate={{
+          left:
+            resolvedTheme === "dark"
+              ? "calc(100% - var(--spacing) * 9)"
+              : "0px",
+        }}
       />
       <IoSunnyOutline
-        className="size-7 z-1 stroke-foreground"
+        className="stroke-foreground z-1 size-7"
         strokeWidth={1.5}
       />
       <IoMoonOutline
-        className="size-6 z-1 stroke-background"
+        className="stroke-background z-1 size-6"
         strokeWidth={1.5}
       />
-    </div>
+    </button>
   );
 }

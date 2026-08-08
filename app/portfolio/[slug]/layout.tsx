@@ -15,7 +15,7 @@ export default async function PortfolioLayout({
   if (!portfolioItem) notFound();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col md:flex-row">
       <PortfolioNav slug={slug} />
       {children}
     </div>

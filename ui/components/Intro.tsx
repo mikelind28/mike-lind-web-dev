@@ -15,7 +15,7 @@ import { IoPause, IoPlay, IoRefresh } from "react-icons/io5";
 const delimiter = "";
 const duration = 4;
 
-function useAnimatedText(
+function useAnimatedCursor(
   text: string,
   paused: boolean,
   complete: boolean,
@@ -29,7 +29,7 @@ function useAnimatedText(
   useEffect(() => {
     const from = restarted ? 0 : cursor;
     const dur = restarted ? duration : remainingDuration;
-  
+
     if (restarted) {
       setCursor(0);
       setRemainingDuration(duration);
@@ -37,10 +37,8 @@ function useAnimatedText(
     }
 
     const controls = animate(from, text.split(delimiter).length, {
-      // Tweak the animation here
       duration: dur,
       ease: "linear",
-      // Over the course of "duration" seconds, the cursor will move from cursor to the length of the text, one character at a time.
       onUpdate(latest) {
         setCursor(Math.floor(latest));
       },
@@ -65,7 +63,7 @@ function useAnimatedText(
     return () => controls.stop();
   }, [text, paused, complete, restarted]);
 
-  return text.split(delimiter).slice(0, cursor).join(delimiter);
+  return cursor;
 }
 
 function AnimatedText({ text }: { text: string }) {
@@ -73,52 +71,98 @@ function AnimatedText({ text }: { text: string }) {
   const [complete, setComplete] = useState(false);
   const [restarted, setRestarted] = useState(false);
 
-  const animatedText = useAnimatedText(text, paused, complete, setComplete, restarted, setRestarted);
+  const cursor = useAnimatedCursor(
+    text,
+    paused,
+    complete,
+    setComplete,
+    restarted,
+    setRestarted,
+  );
+
+  const chars = text.split(delimiter);
 
   return (
-    <div className="flex flex-col gap-2 relative bg-foreground text-background p-4 z-1">
-      <div className="flex items-center gap-3 -ml-1">
-        {complete 
-          ? <IoRefresh
-              onClick={() => {
-                setComplete(false);
-                setPaused(false);
-                setRestarted(true);
-              }} 
-              style={{ height: "32px", width: "32px" }} 
+    <div className="bg-foreground text-background 2xs:p-5 xs:p-6 relative z-1 mx-auto flex max-w-110 flex-col gap-2 p-4">
+      <div className="-ml-1 flex items-center gap-3">
+        {complete ? (
+          <button
+            type="button"
+            onClick={() => {
+              setComplete(false);
+              setPaused(false);
+              setRestarted(true);
+            }}
+            aria-label="Restart text animation"
+            className="icon-button"
+          >
+            <IoRefresh
+              style={{ height: "32px", width: "32px" }}
+              aria-hidden="true"
             />
-          : paused 
-            ? <IoPlay
-                onClick={() => setPaused(false)}
+          </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setPaused(!paused)}
+            aria-label={paused ? "Play" : "Pause"}
+            aria-pressed={!paused}
+            className="icon-button"
+          >
+            {paused ? (
+              <IoPlay
                 style={{ height: "32px", width: "32px" }}
+                aria-hidden="true"
               />
-            : <IoPause
-                onClick={() => setPaused(true)}
+            ) : (
+              <IoPause
                 style={{ height: "32px", width: "32px" }}
+                aria-hidden="true"
               />
-        }
-        {!complete && 
-          <FaForward 
-            style={{ height: "30px", width: "30px" }} 
-            onClick={() => setComplete(true)} 
-          />
-        }
+            )}
+          </button>
+        )}
+        {!complete && (
+          <button
+            type="button"
+            onClick={() => setComplete(true)}
+            aria-label="Skip to end"
+            className="icon-button"
+          >
+            <FaForward
+              style={{ height: "30px", width: "30px" }}
+              aria-hidden="true"
+            />
+          </button>
+        )}
       </div>
-      <p>{animatedText}</p>
+      <p aria-label={text}>
+        {chars.map((char, i) => (
+          <span
+            key={i}
+            aria-hidden="true"
+            style={{
+              opacity: i < cursor ? 1 : 0,
+            }}
+          >
+            {char}
+          </span>
+        ))}
+      </p>
     </div>
   );
 }
 
-export default function CrosshatchBg({ text }: { text: string }) {
+export default function Intro({ text }: { text: string }) {
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const xPosition = useTransform(scrollYProgress, [0, 1], [0, 100]);
   const maskPosition = useMotionTemplate`${xPosition}% ${xPosition}%`;
 
   return (
-    <div className="relative px-2 py-10 border-y">
+    <div className="2xs:px-3 xs:px-5 relative border-y px-2 py-10">
       <motion.div
-        className="absolute inset-0 z-0 bg-foreground mask-[url('/cross-hatch.svg')] mask-repeat mask-size-[75px_75px]"
+        className="bg-foreground absolute inset-0 z-0 mask-[url('/patterns/cross-hatch.svg')] mask-size-[75px_75px] mask-center mask-repeat"
         style={{ maskPosition: shouldReduceMotion ? "0% 0%" : maskPosition }}
       />
       <AnimatedText text={text} />

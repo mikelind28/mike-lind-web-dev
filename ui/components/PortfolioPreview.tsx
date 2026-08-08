@@ -1,0 +1,75 @@
+"use client";
+
+import { portfolioItems } from "@/lib/portfolio-items";
+import { animate, hover } from "motion";
+import { useReducedMotion, motion } from "motion/react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
+import { IoChevronForward } from "react-icons/io5";
+
+function PortfolioPreviewItem({
+  path,
+  title,
+  description,
+  index,
+}: {
+  path: string;
+  title: string;
+  description: string;
+  index: number;
+}) {
+  // const itemRef = useRef<HTMLAnchorElement>(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  // const [hovering, setHovering] = useState(false);
+
+  // useEffect(() => {
+  //   return hover(itemRef.current, () => {
+  //     setHovering(true);
+
+  //     return () => setHovering(false);
+  //   })
+  // }, []);
+
+  return (
+    <Link
+      href={`/portfolio/${path}`}
+      className="group bg-background text-foreground w-full max-w-110 border"
+    >
+      <hgroup className="flex flex-col gap-3 p-3">
+        <div className="border-b-foreground flex items-center justify-between gap-4 border-b border-dashed pb-2">
+          <h3 className="text-2xl font-medium group-hover:underline group-hover:underline-offset-2">
+            {title}
+          </h3>
+          <IoChevronForward className="group-hover:animate-side-bounce size-7 shrink-0" />
+        </div>
+        <p className="text-base leading-relaxed">{description}</p>
+      </hgroup>
+      <div className="bg-background border-t-foreground overflow-hidden border-t">
+        <motion.div
+          className="bg-foreground h-3 mask-[url('/patterns/cross-hatch.svg')] mask-size-[50px_50px] mask-center mask-repeat group-hover:scale-150 group-hover:transition-transform group-hover:duration-1500"
+          initial={{ scale: shouldReduceMotion ? 1 : 2 }}
+          whileInView={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+      </div>
+    </Link>
+  );
+}
+
+export default function PortfolioPreview() {
+  return (
+    <section className="flex flex-col items-center gap-4 px-3 md:gap-6">
+      <h2 className="home-page">Portfolio</h2>
+      {portfolioItems.map((item, index) => (
+        <PortfolioPreviewItem
+          key={item.slug}
+          path={`/${item.slug}`}
+          title={item.title}
+          description={item.description}
+          index={index}
+        />
+      ))}
+    </section>
+  );
+}

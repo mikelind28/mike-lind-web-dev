@@ -21,7 +21,7 @@ export default function RootLayout({
     <MotionConfig reducedMotion="user">
       <html lang="en" suppressHydrationWarning className={`h-full antialiased`}>
         <body
-          className={`${ibmPlexMonoRegular.className} grid grid-rows-[auto_1fr_auto] min-h-full`}
+          className={`${ibmPlexMonoRegular.className} bg-background text-foreground grid min-h-full grid-rows-[auto_1fr_auto] tracking-[2%]`}
         >
           <ThemeProvider
             attribute="data-theme"
