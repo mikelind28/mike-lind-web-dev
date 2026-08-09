@@ -1,6 +1,6 @@
-import { getPortfolioItem } from "@/lib/portfolio-items";
 import { notFound } from "next/navigation";
 import PortfolioNav from "@/ui/layout/PortfolioNav";
+import { sql } from '@/lib/db';
 
 export default async function PortfolioLayout({
   children,
@@ -10,13 +10,16 @@ export default async function PortfolioLayout({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
-  const portfolioItem = getPortfolioItem(slug);
+  const projects = await sql`
+    SELECT id, name, slug 
+    FROM projects
+    ORDER BY display_order`
 
-  if (!portfolioItem) notFound();
+  if (!projects) notFound();
 
   return (
     <div className="flex flex-col md:flex-row">
-      <PortfolioNav slug={slug} />
+      <PortfolioNav slug={slug} projects={projects} />
       {children}
     </div>
   );

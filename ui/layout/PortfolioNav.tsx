@@ -1,15 +1,14 @@
 "use client";
 
 import { ibmPlexMonoMedium, ibmPlexMonoSemibold } from "@/app/fonts";
-import { portfolioItems } from "@/lib/portfolio-items";
-import { motion, useScroll } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { IoChevronDown } from "react-icons/io5";
 
 const RotatingChevron = motion.create(IoChevronDown);
 
-export default function PortfolioNav({ slug }: { slug: string }) {
+export default function PortfolioNav({ slug, projects }: { slug: string; projects: Record<string, any>[] }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -43,8 +42,8 @@ export default function PortfolioNav({ slug }: { slug: string }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.1 }}
         >
-          {portfolioItems.map((item) => (
-            <li key={item.slug}>
+          {projects.map((item) => (
+            <li key={item.id}>
               <Link
                 href={`/portfolio/${item.slug}`}
                 className={`border-l-foreground block py-2 ${
@@ -66,7 +65,7 @@ export default function PortfolioNav({ slug }: { slug: string }) {
                       }
                 }
               >
-                {item.title}
+                {item.name}
               </Link>
             </li>
           ))}
