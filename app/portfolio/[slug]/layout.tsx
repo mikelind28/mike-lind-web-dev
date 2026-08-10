@@ -15,7 +15,7 @@ export default async function PortfolioLayout({
     FROM projects
     ORDER BY display_order`
 
-  if (!projects) notFound();
+  if (projects.length === 0) notFound();
 
   return (
     <div className="flex flex-col md:flex-row">

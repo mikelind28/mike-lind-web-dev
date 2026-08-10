@@ -1,6 +1,5 @@
 "use client";
 
-import { proficiencies } from "@/lib/proficiencies";
 import { stagger } from "motion";
 import {
   motion,
@@ -34,10 +33,10 @@ const item = {
 };
 
 function ProficiencyListItem({
-  proficiency,
+  name,
   imgSrc,
 }: {
-  proficiency: string;
+  name: string;
   imgSrc?: string;
 }) {
   const liRef = useRef<HTMLLIElement>(null);
@@ -75,20 +74,20 @@ function ProficiencyListItem({
             style={{ scale: responsiveScale }}
           >
             <Image
-              src={`${imgSrc}`}
+              src={imgSrc}
               fill={true}
               sizes="50px"
               loading={"eager"}
               className="rounded-xs object-contain p-1 drop-shadow-[0px_2px_1px_rgba(0,0,0,0.8)]"
-              alt={`${proficiency} logo`}
+              alt={`${name} logo`}
             />
           </motion.div>
         )}
         <motion.p
-          className="font-medium"
+          className="font-medium leading-5!"
           style={{ letterSpacing: responsiveLetterSpacingPercent }}
         >
-          {proficiency}
+          {name}
         </motion.p>
       </div>
     </motion.li>
@@ -105,8 +104,9 @@ const container = {
   },
 };
 
-export default function Proficiencies() {
+export default function Proficiencies({ proficiencies } : { proficiencies: Record<string, any>[] }) {
   const ulRef = useRef<HTMLUListElement>(null);
+
   return (
     <section className="2xs:px-4 flex flex-col items-center gap-4 px-3 md:gap-6 md:px-8">
       <h2 className="home-page">Proficiencies</h2>
@@ -119,14 +119,14 @@ export default function Proficiencies() {
       >
         {proficiencies.map((item) => (
           <ProficiencyListItem
-            key={item.proficiency}
-            proficiency={item.proficiency}
-            imgSrc={item.imgSrc}
+            key={item.id}
+            name={item.name}
+            imgSrc={item.imageUrl}
           />
         ))}
         <ProficiencyListItem
           key={"...and more to come..."}
-          proficiency={"...and more to come..."}
+          name={"...and more to come..."}
         />
       </motion.ul>
     </section>

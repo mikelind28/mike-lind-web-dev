@@ -1,35 +1,19 @@
 "use client";
 
-import { portfolioItems } from "@/lib/portfolio-items";
-import { animate, hover } from "motion";
 import { useReducedMotion, motion } from "motion/react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 import { IoChevronForward } from "react-icons/io5";
 
 function PortfolioPreviewItem({
   path,
   title,
   description,
-  index,
 }: {
   path: string;
   title: string;
   description: string;
-  index: number;
 }) {
-  // const itemRef = useRef<HTMLAnchorElement>(null);
   const shouldReduceMotion = useReducedMotion();
-
-  // const [hovering, setHovering] = useState(false);
-
-  // useEffect(() => {
-  //   return hover(itemRef.current, () => {
-  //     setHovering(true);
-
-  //     return () => setHovering(false);
-  //   })
-  // }, []);
 
   return (
     <Link
@@ -57,17 +41,16 @@ function PortfolioPreviewItem({
   );
 }
 
-export default function PortfolioPreview() {
+export default function PortfolioPreview({ projects }: { projects: Record<string, any>[] }) {
   return (
     <section className="flex flex-col items-center gap-4 px-3 md:gap-6">
       <h2 className="home-page">Portfolio</h2>
-      {portfolioItems.map((item, index) => (
+      {projects.map((item) => (
         <PortfolioPreviewItem
-          key={item.slug}
+          key={item.id}
           path={`/${item.slug}`}
-          title={item.title}
+          title={item.name}
           description={item.description}
-          index={index}
         />
       ))}
     </section>
