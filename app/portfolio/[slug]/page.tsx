@@ -32,7 +32,7 @@ export default async function PortfolioItemPage({
   }
 
   return (
-    <main className="relative flex flex-col md:border-y w-full">
+    <main className="relative flex w-full flex-col md:border-y">
       <div className="bg-foreground absolute inset-0 z-0 mask-[url('/patterns/cross-hatch.svg')] mask-size-[50px_50px] mask-center mask-repeat" />
       <div className="2xs:px-6 2xs:py-8 flex flex-col gap-2 px-4 py-6">
         <div className="bg-background z-1 grid max-w-175 grid-cols-2 grid-rows-2 border">
@@ -59,17 +59,27 @@ export default async function PortfolioItemPage({
           {projectData.description}
         </p>
 
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-wrap gap-8">
           {images.map((img) => (
-            <figure key={img.id} className="z-1 flex flex-col items-center w-full md:w-fit">
-              <Image
-                src={publicImageUrl(img.object_key)}
-                width={1000}
-                height={1000}
-                alt={img.alt_text}
-                className="w-[calc(100%-10px)] max-w-125 rounded-xl object-contain drop-shadow-[-2px_-2px_var(--background),-2px_2px_var(--background),2px_2px_var(--background),2px_-2px_var(--background),-1px_-1px_var(--foreground),1px_-1px_var(--foreground),4px_4px_var(--foreground),-1px_1px_var(--foreground)]"
-              />
-              <figcaption className="bg-background mt-4 w-full max-w-125 border text-sm italic shadow-[4px_4px_var(--foreground)]" style={{ padding: '16px 20px 16px 20px'}}>
+            <figure
+              key={img.id}
+              className="z-1 flex w-full flex-col items-center md:w-fit max-w-125"
+            >
+              <div className="relative w-full flex-1 min-h-0">
+                <div className="screenshot-box sticky top-0 bg-clip-padding">
+                  <div className="absolute inset-0 shadow-[inset_0px_3px_6px_-2px_rgba(0,0,0,0.75)] rounded-xl" />
+                  <Image
+                    src={publicImageUrl(img.object_key)}
+                    width={1000}
+                    height={1000}
+                    alt={img.alt_text}
+                    className="w-full object-contain rounded-xl"
+                  />
+                </div>
+              </div>
+              <figcaption
+                className="bg-background mt-4 w-full max-w-125  border px-5 py-4 xs:px-7 xs:py-5 sm:px-8 sm:py-6 text-sm italic shadow-[4px_4px_var(--foreground)] xs:text-base sm:shadow-[6px_6px_var(--foreground)]"
+              >
                 {img.fig_caption}
               </figcaption>
             </figure>

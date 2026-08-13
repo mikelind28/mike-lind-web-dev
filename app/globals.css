@@ -2,6 +2,7 @@
 
 :root {
   --background: #faaf00;
+  --background-light: #f5c24b;
   --foreground: #140f00;
 }
 
@@ -9,6 +10,7 @@
   --breakpoint-2xs: 25rem; /* 400px */
   --breakpoint-xs: 32rem; /* 512px */
   --color-background: var(--background);
+  --color-background-light: var(--background-light);
   --color-foreground: var(--foreground);
   --animate-side-bounce: side-bounce 1s infinite;
 }
@@ -55,4 +57,26 @@ h2.portfolio-item {
   padding: 0; 
   cursor: pointer; 
   display: inline-flex; 
+}
+
+.screenshot-box {
+  border-radius: 1rem;
+  background-color: var(--background);
+  border: 6px solid var(--background);
+  outline: 2px solid var(--foreground);
+  box-shadow: 4px 4px 0px 2px var(--foreground);
+ }
+
+ /* tailwind sm breakpoint */
+@media (min-width: 40rem) {
+  .screenshot-box {
+    border: 10px solid var(--background);
+   }
+}
+
+/* tailwind lg breakpoint */
+@media (min-width: 64rem) {
+   .screenshot-box {
+    border: 12px solid var(--background);
+   }
 }
