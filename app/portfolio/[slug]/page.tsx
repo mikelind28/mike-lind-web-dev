@@ -32,9 +32,9 @@ export default async function PortfolioItemPage({
   }
 
   return (
-    <main className="relative flex flex-col md:border-y">
+    <main className="relative flex flex-col md:border-y w-full">
       <div className="bg-foreground absolute inset-0 z-0 mask-[url('/patterns/cross-hatch.svg')] mask-size-[50px_50px] mask-center mask-repeat" />
-      <div className="2xs:px-6 2xs:py-8 flex flex-col gap-4 px-4 py-6">
+      <div className="2xs:px-6 2xs:py-8 flex flex-col gap-2 px-4 py-6">
         <div className="bg-background z-1 grid max-w-175 grid-cols-2 grid-rows-2 border">
           <h2 className="portfolio-item 2xs:p-5 xs:px-8 col-span-2 border-b p-3">
             {projectData.name}
@@ -55,13 +55,13 @@ export default async function PortfolioItemPage({
           </Link>
         </div>
 
-        <p className="bg-background 2xs:p-5 xs:px-8 z-1 mb-2 max-w-175 border p-4 text-lg shadow-[4px_4px_var(--foreground)]">
+        <p className="bg-background 2xs:p-5 xs:px-8 z-1 mb-8 max-w-175 border p-4 text-lg shadow-[4px_4px_var(--foreground)]">
           {projectData.description}
         </p>
 
-        <div className="flex flex-wrap gap-6">
+        <div className="flex flex-col gap-8">
           {images.map((img) => (
-            <figure key={img.id} className="z-1 flex flex-col items-center w-full">
+            <figure key={img.id} className="z-1 flex flex-col items-center w-full md:w-fit">
               <Image
                 src={publicImageUrl(img.object_key)}
                 width={1000}
@@ -69,7 +69,7 @@ export default async function PortfolioItemPage({
                 alt={img.alt_text}
                 className="w-[calc(100%-10px)] max-w-125 rounded-xl object-contain drop-shadow-[-2px_-2px_var(--background),-2px_2px_var(--background),2px_2px_var(--background),2px_-2px_var(--background),-1px_-1px_var(--foreground),1px_-1px_var(--foreground),4px_4px_var(--foreground),-1px_1px_var(--foreground)]"
               />
-              <figcaption className="bg-background mt-4 max-w-125 border text-sm italic shadow-[4px_4px_var(--foreground)]" style={{ padding: '16px 20px 16px 20px'}}>
+              <figcaption className="bg-background mt-4 w-full max-w-125 border text-sm italic shadow-[4px_4px_var(--foreground)]" style={{ padding: '16px 20px 16px 20px'}}>
                 {img.fig_caption}
               </figcaption>
             </figure>

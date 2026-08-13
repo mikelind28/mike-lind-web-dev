@@ -29,14 +29,14 @@ export default function PortfolioNav({ slug, projects }: { slug: string; project
         />
       </motion.button>
       <motion.ul
-        className="bg-background overflow-hidden border-t md:border-t-0"
+        className="bg-background overflow-hidden border-t md:border-t-0 md:sticky md:top-2"
         initial={{ height: isOpen ? "auto" : 0 }}
         animate={{ height: isOpen ? "auto" : 0 }}
         exit={{ height: 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <motion.div
-          className="2xs:p-6 2xs:pl-5 xs:px-7 p-4 pl-3"
+          className="2xs:p-6 2xs:pl-5 xs:px-7 p-4 pl-3 md:pl-5"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}

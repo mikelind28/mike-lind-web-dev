@@ -7,9 +7,32 @@ import { ibmPlexMonoRegular } from "./fonts";
 import { MotionConfig } from "motion/react";
 
 export const metadata: Metadata = {
-  title: "mike lind | web dev",
-  description:
-    "The web development portfolio of Mike Lind, a full stack web developer specializing in front end and design.",
+    metadataBase: new URL('https://mike-lind-dev.com'),
+    title: {
+      template: "mike lind | web dev – %s",
+      default: "mike lind | web dev",
+    },
+    description:
+      "The web development portfolio of Mike Lind, a Minnesota-based full-stack web developer specializing in front end and design.",
+    openGraph: {
+      title: "mike lind | web dev",
+      description: "The web development portfolio of Mike Lind, a Minnesota-based full-stack web developer specializing in front end and design.",
+      url: "https://mike-lind-dev.com",
+      images: [{ url: "/mlwd-logo-color.svg", width: 1200, height: 1200, type: 'image/svg+xml', alt: 'The mike lind web dev logo.' }],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "mike lind | web dev",
+      description: "The web development portfolio of Mike Lind, a Minnesota-based full-stack web developer specializing in front end and design.",
+      images: ["/mlwd-logo-color.svg"],
+    },
+    alternates: {
+      canonical: "https://www.mike-lind-dev.com",
+    },
+    authors: [{ name: 'Mike Lind', url: 'https://mike-lind-dev.com' }],
+    creator: "Mike Lind",
 };
 
 export default function RootLayout({

@@ -77,14 +77,14 @@ function ProficiencyListItem({
               src={imgSrc}
               fill={true}
               sizes="50px"
-              loading={"eager"}
+              loading="lazy"
               className="rounded-xs object-contain p-1 drop-shadow-[0px_2px_1px_rgba(0,0,0,0.8)]"
               alt={`${name} logo`}
             />
           </motion.div>
         )}
         <motion.p
-          className="font-medium leading-5!"
+          className="leading-5! font-medium"
           style={{ letterSpacing: responsiveLetterSpacingPercent }}
         >
           {name}
@@ -104,7 +104,11 @@ const container = {
   },
 };
 
-export default function Proficiencies({ proficiencies } : { proficiencies: Record<string, any>[] }) {
+export default function Proficiencies({
+  proficiencies,
+}: {
+  proficiencies: Record<string, any>[];
+}) {
   const ulRef = useRef<HTMLUListElement>(null);
 
   return (

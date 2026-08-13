@@ -12,14 +12,16 @@ export default async function Home() {
   const projects = await sql`
     SELECT id, name, description, slug 
     FROM projects
-    ORDER BY display_order`
+    ORDER BY display_order
+  `
 
   if (projects.length === 0) notFound();
 
   const proficiencies = await sql`
-  SELECT id, name, object_key 
-  FROM proficiencies
-  ORDER BY display_order`
+    SELECT id, name, object_key 
+    FROM proficiencies
+    ORDER BY display_order
+  `
 
   if (proficiencies.length === 0) notFound();
 
@@ -30,7 +32,7 @@ export default async function Home() {
   }));
   
   return (
-    <main className="flex flex-col gap-10 overflow-hidden py-4 text-xl">
+    <main className="flex flex-col gap-10 overflow-hidden pb-4 text-xl">
       <Intro
         text={`I'm a full-stack web developer, specializing in front-end development and design.`}
       />
