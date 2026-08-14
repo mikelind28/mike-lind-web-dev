@@ -5,6 +5,7 @@ import Header from "@/ui/layout/Header";
 import Footer from "@/ui/layout/Footer";
 import { ibmPlexMonoRegular } from "./fonts";
 import { MotionConfig } from "motion/react";
+import AnimationTest from "@/ui/components/AnimationTest";
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://mike-lind-dev.com'),

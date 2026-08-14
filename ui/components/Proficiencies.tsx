@@ -112,7 +112,7 @@ export default function Proficiencies({
   const ulRef = useRef<HTMLUListElement>(null);
 
   return (
-    <section className="2xs:px-4 flex flex-col items-center gap-4 px-3 md:gap-6 md:px-8">
+    <section className="2xs:px-4 flex flex-col items-center gap-4 px-3 md:gap-6 md:px-8 relative z-1 bg-background">
       <h2 className="home-page">Proficiencies</h2>
       <motion.ul
         ref={ulRef}

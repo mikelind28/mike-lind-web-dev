@@ -73,7 +73,7 @@ export default async function PortfolioItemPage({
                     width={1000}
                     height={1000}
                     alt={img.alt_text}
-                    className="w-full object-contain rounded-xl"
+                    className="w-full object-contain rounded-xl border-2 border-foreground"
                   />
                 </div>
               </div>

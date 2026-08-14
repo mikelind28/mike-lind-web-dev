@@ -160,9 +160,9 @@ export default function Intro({ text }: { text: string }) {
   const maskPosition = useMotionTemplate`${xPosition}% ${xPosition}%`;
 
   return (
-    <div className="2xs:px-3 xs:px-5 relative border-y px-2 py-10">
+    <div className="2xs:px-3 xs:px-5 relative border-y px-2 py-10 z-1 bg-background/67">
       <motion.div
-        className="bg-foreground absolute inset-0 z-0 mask-[url('/patterns/cross-hatch.svg')] mask-size-[75px_75px] mask-center mask-repeat"
+        className="bg-foreground absolute inset-0 z-1 mask-[url('/patterns/cross-hatch.svg')] mask-size-[75px_75px] mask-center mask-repeat"
         style={{ maskPosition: shouldReduceMotion ? "0% 0%" : maskPosition }}
       />
       <AnimatedText text={text} />
