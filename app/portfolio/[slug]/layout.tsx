@@ -3,6 +3,8 @@ import PortfolioNav from "@/ui/layout/PortfolioNav";
 import { sql } from "@/lib/db";
 import type { Metadata } from "next";
 
+// TODO: add a page at /portfolio route
+
 type Props = {
   params: Promise<{ slug: string }>;
 };

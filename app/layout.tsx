@@ -5,7 +5,8 @@ import Header from "@/ui/layout/Header";
 import Footer from "@/ui/layout/Footer";
 import { ibmPlexMonoRegular } from "./fonts";
 import { MotionConfig } from "motion/react";
-import AnimationTest from "@/ui/components/AnimationTest";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://mike-lind-dev.com'),
@@ -56,6 +57,8 @@ export default function RootLayout({
             {children}
             <Footer />
           </ThemeProvider>
+          <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </MotionConfig>
