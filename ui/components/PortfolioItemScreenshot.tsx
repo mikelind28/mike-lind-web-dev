@@ -8,7 +8,7 @@ export default function PortfolioItemScreenshot({ img }: { img: Record<string, a
   return (
     <figure
       key={img.id}
-      className="z-1 flex min-w-50 w-fit max-w-125 flex-col items-center md:items-start "
+      className="z-1 flex min-w-50 max-w-125 flex-col items-center md:items-start "
     >
       <div className="relative min-h-0 flex-1">
         <div className="screenshot-box sticky top-0 bg-clip-padding">
@@ -19,7 +19,7 @@ export default function PortfolioItemScreenshot({ img }: { img: Record<string, a
             height={img.height}
             alt={img.alt_text}
             loading="eager"
-            className="border-foreground w-auto h-auto max-h-100 rounded-xl border-2 object-contain"
+            className="border-foreground w-auto h-auto max-h-125 rounded-xl border-2 object-contain"
           />
         </div>
       </div>
