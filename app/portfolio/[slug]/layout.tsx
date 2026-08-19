@@ -3,8 +3,6 @@ import PortfolioNav from "@/ui/layout/PortfolioNav";
 import { sql } from "@/lib/db";
 import type { Metadata } from "next";
 
-// TODO: add a page at /portfolio route
-
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -12,6 +10,10 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = await sql`SELECT name FROM projects WHERE slug = ${slug}`;
+
+  if (project.length === 0) {
+    notFound();
+  }
 
   return {
     title: `${project[0].name}`,

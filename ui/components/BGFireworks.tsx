@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { useReducedMotion } from "motion/react";
 
 type GridItemConfig = {
   id: number;
@@ -109,10 +110,11 @@ function Grid() {
   );
 }
 
-export default function AnimationTest() {
+export default function BGFireworks() {
+  const shouldReduceMotion = useReducedMotion();
   return (
     <>
-      {Array.from({ length: 10 }).map((_item, index) => (
+      {!shouldReduceMotion && Array.from({ length: 10 }).map((_item, index) => (
         <Grid key={index} />
       ))}
     </>

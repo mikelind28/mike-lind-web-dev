@@ -121,7 +121,7 @@ export default function Proficiencies({
         whileInView="show"
         className="flex w-full flex-col items-center gap-2 md:flex-row md:flex-wrap"
       >
-        {proficiencies.map((item) => (
+        {proficiencies.length > 0 && proficiencies.map((item) => (
           <ProficiencyListItem
             key={item.id}
             name={item.name}
