@@ -22,7 +22,7 @@ export default function Toggle() {
 
   return (
     <button
-      className="outline-foreground relative flex cursor-pointer items-center justify-between gap-3 rounded-full p-1 outline-2 focus-visible:outline-blue-400 "
+      className="outline-foreground relative flex cursor-pointer items-center justify-between gap-3 rounded-full p-1 outline-2 focus-visible:outline-blue-400"
       style={
         resolvedTheme === "dark"
           ? { backgroundColor: "var(--background)" }

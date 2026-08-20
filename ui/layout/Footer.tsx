@@ -30,14 +30,14 @@ function GitHubIcon() {
 
 export default function Footer() {
   return (
-    <footer className="z-1 bg-background relative flex flex-col items-center gap-4 px-4 py-6 overflow-hidden">
+    <footer className="bg-background relative z-1 flex flex-col items-center gap-4 overflow-hidden px-4 py-6">
       <Divider />
       <h2 className="home-page">Contact</h2>
       <Link href="mailto:mike@mike-lind-dev.com" className="text-xl">
         mike@mike-lind-dev.com
       </Link>
       <GitHubIcon />
-      <Link href="/" className="flex flex-col gap-2 items-center text-xl">
+      <Link href="/" className="flex flex-col items-center gap-2 text-xl">
         <div className="text-center">
           <p>mike lind</p>
           <div className="bg-foreground h-px w-full" />

@@ -1,21 +1,21 @@
-'use client' // Error boundaries must be Client Components
- 
-import { useEffect } from 'react'
- 
+"use client"; // Error boundaries must be Client Components
+
+import { useEffect } from "react";
+
 export default function Error({
   error,
   retry,
 }: {
-  error: Error & { digest?: string }
-  retry: () => void
+  error: Error & { digest?: string };
+  retry: () => void;
 }) {
   useEffect(() => {
     // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
- 
+    console.error(error);
+  }, [error]);
+
   return (
-    <div className='p-8 text-center flex flex-col items-center gap-8'>
+    <div className="flex flex-col items-center gap-8 p-8 text-center">
       <h2 className="font-bold">Something went wrong!</h2>
       <button
         onClick={
@@ -27,5 +27,5 @@ export default function Error({
         Try again
       </button>
     </div>
-  )
+  );
 }

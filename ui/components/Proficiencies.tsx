@@ -112,7 +112,7 @@ export default function Proficiencies({
   const ulRef = useRef<HTMLUListElement>(null);
 
   return (
-    <section className="2xs:px-4 flex flex-col items-center gap-4 px-3 md:gap-6 md:px-8 relative z-1 bg-background">
+    <section className="2xs:px-4 bg-background relative z-1 flex flex-col items-center gap-4 px-3 md:gap-6 md:px-8">
       <h2 className="home-page">Proficiencies</h2>
       <motion.ul
         ref={ulRef}
@@ -121,13 +121,14 @@ export default function Proficiencies({
         whileInView="show"
         className="flex w-full flex-col items-center gap-2 md:flex-row md:flex-wrap"
       >
-        {proficiencies.length > 0 && proficiencies.map((item) => (
-          <ProficiencyListItem
-            key={item.id}
-            name={item.name}
-            imgSrc={item.imageUrl}
-          />
-        ))}
+        {proficiencies.length > 0 &&
+          proficiencies.map((item) => (
+            <ProficiencyListItem
+              key={item.id}
+              name={item.name}
+              imgSrc={item.imageUrl}
+            />
+          ))}
         <ProficiencyListItem
           key={"...and more to come..."}
           name={"...and more to come..."}

@@ -61,12 +61,12 @@ h2.portfolio-item {
   }
 }
 
-.icon-button { 
-  background: none; 
-  border: none; 
-  padding: 0; 
-  cursor: pointer; 
-  display: inline-flex; 
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
 }
 
 .screenshot-box {
@@ -75,18 +75,18 @@ h2.portfolio-item {
   border: 6px solid var(--background);
   outline: 2px solid var(--foreground);
   box-shadow: 4px 4px 0px 2px var(--foreground);
- }
+}
 
- /* tailwind sm breakpoint */
+/* tailwind sm breakpoint */
 @media (min-width: 40rem) {
   .screenshot-box {
     border: 10px solid var(--background);
-   }
+  }
 }
 
 /* tailwind lg breakpoint */
 @media (min-width: 64rem) {
-   .screenshot-box {
+  .screenshot-box {
     border: 12px solid var(--background);
-   }
+  }
 }

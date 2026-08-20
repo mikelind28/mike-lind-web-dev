@@ -8,7 +8,13 @@ import { IoChevronDown } from "react-icons/io5";
 
 const RotatingChevron = motion.create(IoChevronDown);
 
-export default function PortfolioNav({ slug, projects }: { slug: string; projects: Record<string, any>[] }) {
+export default function PortfolioNav({
+  slug,
+  projects,
+}: {
+  slug: string;
+  projects: Record<string, any>[];
+}) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -18,7 +24,7 @@ export default function PortfolioNav({ slug, projects }: { slug: string; project
           borderBottom: isOpen ? "1px solid var(--foreground)" : "none",
         }}
         transition={{ delay: isOpen ? 0 : 0.3, duration: 0 }}
-        className="2xs:px-6 xs:px-8 2xs:py-3 bg-background sticky top-0 flex cursor-pointer items-center justify-between gap-4 px-5 py-2 md:hidden w-full"
+        className="2xs:px-6 xs:px-8 2xs:py-3 bg-background sticky top-0 flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-2 md:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <p className={`${ibmPlexMonoMedium.className} text-2xl`}>Portfolio</p>
@@ -29,7 +35,7 @@ export default function PortfolioNav({ slug, projects }: { slug: string; project
         />
       </motion.button>
       <motion.ul
-        className="bg-background overflow-hidden border-t md:border-t-0 md:sticky md:top-2"
+        className="bg-background overflow-hidden border-t md:sticky md:top-2 md:border-t-0"
         initial={{ height: isOpen ? "auto" : 0 }}
         animate={{ height: isOpen ? "auto" : 0 }}
         exit={{ height: 0 }}

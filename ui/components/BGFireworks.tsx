@@ -88,7 +88,6 @@ function Grid() {
     return null;
   }
 
-
   return (
     <div
       className="fixed -z-1 h-screen w-screen"
@@ -114,9 +113,8 @@ export default function BGFireworks() {
   const shouldReduceMotion = useReducedMotion();
   return (
     <>
-      {!shouldReduceMotion && Array.from({ length: 10 }).map((_item, index) => (
-        <Grid key={index} />
-      ))}
+      {!shouldReduceMotion &&
+        Array.from({ length: 10 }).map((_item, index) => <Grid key={index} />)}
     </>
   );
 }

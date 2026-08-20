@@ -41,18 +41,23 @@ function PortfolioPreviewItem({
   );
 }
 
-export default function PortfolioPreview({ projects }: { projects: Record<string, any>[] }) {
+export default function PortfolioPreview({
+  projects,
+}: {
+  projects: Record<string, any>[];
+}) {
   return (
-    <section className="relative z-1  w-fit mx-auto flex flex-col items-center gap-4 px-3 md:gap-6">
+    <section className="relative z-1 mx-auto flex w-fit flex-col items-center gap-4 px-3 md:gap-6">
       <h2 className="home-page bg-background">Portfolio</h2>
-      {projects.length > 0 && projects.map((item) => (
-        <PortfolioPreviewItem
-          key={item.id}
-          path={`/${item.slug}`}
-          title={item.name}
-          description={item.description}
-        />
-      ))}
+      {projects.length > 0 &&
+        projects.map((item) => (
+          <PortfolioPreviewItem
+            key={item.id}
+            path={`/${item.slug}`}
+            title={item.name}
+            description={item.description}
+          />
+        ))}
     </section>
   );
 }

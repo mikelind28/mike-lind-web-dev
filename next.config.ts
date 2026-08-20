@@ -14,12 +14,12 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: '/portfolio',
-        destination: '/',
+        source: "/portfolio",
+        destination: "/",
         permanent: false,
-      }
-    ]
-  }
+      },
+    ];
+  },
 };
 
 export default nextConfig;
