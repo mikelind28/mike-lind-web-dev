@@ -3,6 +3,7 @@ import Intro from "@/ui/components/Intro";
 import Proficiencies from "@/ui/components/Proficiencies";
 import { sql } from "@/lib/db";
 import BGFireworks from "@/ui/components/BGFireworks";
+import LogoBW from "@/ui/components/LogoBW";
 
 function publicImageUrl(objectKey: string) {
   return `${process.env.AWS_ENDPOINT_URL_S3}/${process.env.AWS_BUCKET_NAME}/${objectKey}`;
@@ -38,3 +39,5 @@ export default async function Home() {
     </main>
   );
 }
+
+

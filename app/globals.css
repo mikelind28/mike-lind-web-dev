@@ -51,6 +51,16 @@ h2.portfolio-item {
   }
 }
 
+.spinning-logo {
+  animation: 4s linear 0s infinite logo-spin;
+}
+
+@keyframes logo-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .icon-button { 
   background: none; 
   border: none; 
