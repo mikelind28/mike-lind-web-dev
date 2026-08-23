@@ -85,7 +85,7 @@ function AnimatedText({ text }: { text: string }) {
   const chars = text.split(delimiter);
 
   return (
-    <div className="bg-my-black text-my-yellow 2xs:p-5 xs:p-6 relative z-1 mx-auto flex max-w-130 flex-col gap-2 p-4 text-2xl xl:max-w-160 xl:p-8 xl:text-3xl">
+    <div className="bg-my-black text-my-yellow 2xs:p-5 xs:p-6 relative z-1 mx-auto flex max-w-115 flex-col gap-2 p-4 text-2xl md:max-w-130 lg:max-w-140 lg:px-12 lg:pt-8 lg:pb-9 xl:max-w-160 lg:gap-3">
       <div className="-ml-1 flex items-center gap-3">
         {complete ? (
           <button
@@ -203,7 +203,7 @@ export default function Intro({ text }: { text: string }) {
       <HomepageHero />
       <div className="xl:pt-8">
         <BgTextPattern />
-        <div className="2xs:px-3 xs:px-5 bg-background outline-my-black relative z-1 px-2 py-10 outline-4">
+        <div className="xs:px-5 bg-background outline-my-black relative z-1 px-3 py-10 outline-4 md:py-20">
           <motion.div
             className="bg-foreground absolute inset-0 z-1 mask-[url('/patterns/cross-hatch.svg')] mask-size-[75px_75px] mask-center mask-repeat"
             style={{ maskPosition: motionReduced ? "0% 0%" : maskPosition }}

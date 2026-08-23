@@ -53,7 +53,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className={`h-full antialiased`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`h-full w-screen overflow-x-hidden antialiased`}
+    >
       <body
         className={`${ibmPlexMonoRegular.className} bg-background text-foreground grid min-h-full grid-rows-[auto_1fr_auto] tracking-[2%] ${fontVariables}`}
       >

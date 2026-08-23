@@ -66,7 +66,7 @@ function ProficiencyListItem({
 
   return (
     <motion.li
-      className="bg-background w-full max-w-120 md:w-fit"
+      className="bg-background w-full md:w-fit"
       style={{ boxShadow: "4px 4px var(--foreground)" }}
       ref={liRef}
       variants={item}
@@ -120,7 +120,7 @@ export default function Proficiencies({
   const ulRef = useRef<HTMLUListElement>(null);
 
   return (
-    <section className="2xs:px-4 bg-background xs:gap-5 relative z-1 flex flex-col items-center gap-5 px-3 py-7 md:px-8">
+    <section className="mx-auto w-full max-w-120 px-3 py-7 md:max-w-full md:px-8 lg:px-12">
       <h2 className="home-page">
         Pro-
         <br />

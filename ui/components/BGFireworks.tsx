@@ -94,7 +94,7 @@ function Grid() {
 
   return (
     <div
-      className="absolute inset-0 -z-1 size-full"
+      className="absolute inset-0 -z-1 size-fit"
       style={{
         top: `${config.yCoorPercent}%`,
         left: `${config.xCoorPercent}%`,

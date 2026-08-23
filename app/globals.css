@@ -257,21 +257,23 @@ html {
 h2.home-page {
   font-family: var(--font-big-shoulders-stencil);
   font-size: 4rem;
-  /* text-decoration: underline 9% dotted var(--background);
-  text-underline-offset: 20%; */
   padding: 1rem;
   line-height: 1em;
   background-color: var(--color-background);
   border: 1px solid var(--color-foreground);
   color: var(--color-foreground);
   align-self: start;
+  width: fit-content;
   box-shadow: 8px 8px var(--foreground);
-  margin-bottom: 12px;
+  margin-bottom: 32px;
 }
 
-@media (min-width: 512px) {
+@media (min-width: 768px) {
   h2.home-page {
-    font-size: 3rem;
+    font-size: 4rem;
+    font-weight: 500;
+    letter-spacing: 4%;
+    box-shadow: 12px 12px var(--foreground);
   }
 }
 
