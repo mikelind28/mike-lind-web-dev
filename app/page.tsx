@@ -2,8 +2,6 @@ import PortfolioPreview from "@/ui/components/PortfolioPreview";
 import Proficiencies from "@/ui/components/Proficiencies";
 import { sql } from "@/lib/db";
 import Intro from "@/ui/components/Intro";
-import HomepageBanner from "@/ui/components/HomepageHero";
-import Image from "next/image";
 import CrosshatchDivider from "@/ui/components/CrosshatchDivider";
 
 function publicImageUrl(objectKey: string) {
@@ -30,16 +28,14 @@ export default async function Home() {
   }));
 
   return (
-    <main className="relative flex flex-col  xl:gap-12 overflow-hidden text-xl">
+    <main className="relative flex flex-col overflow-hidden text-xl xl:gap-12">
       <Intro
         text={`I'm a full-stack web developer, specializing in front-end development and design.`}
       />
       <PortfolioPreview projects={projects} />
       <CrosshatchDivider />
       <div className="bg-background my-8">
-        <div
-          className="bg-foreground h-100 w-screen mask-[url('/happy-mac.png')] mask-size-[100px_100px] mask-center"
-        />
+        <div className="bg-foreground h-100 w-screen mask-[url('/happy-mac.png')] mask-size-[100px_100px] mask-center" />
       </div>
       <CrosshatchDivider />
       <Proficiencies proficiencies={proficienciesWithUrls} />

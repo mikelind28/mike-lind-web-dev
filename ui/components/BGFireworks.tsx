@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useMotionPreference } from "@/app/motion-provider";
-import { useReducedMotion } from "motion/react";
 
 type GridItemConfig = {
   id: number;

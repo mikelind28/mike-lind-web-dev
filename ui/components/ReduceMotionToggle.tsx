@@ -6,12 +6,13 @@ import { IoPlayOutline, IoPause } from "react-icons/io5";
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(
-    () => typeof window !== "undefined" && window.matchMedia(query).matches
+    () => typeof window !== "undefined" && window.matchMedia(query).matches,
   );
 
   useEffect(() => {
     const mql = window.matchMedia(query);
-    const handler = (e: MediaQueryListEvent | MediaQueryList) => setMatches(e.matches);
+    const handler = (e: MediaQueryListEvent | MediaQueryList) =>
+      setMatches(e.matches);
 
     handler(mql); // sync in case it changed between initial state and mount
     mql.addEventListener("change", handler);
@@ -41,11 +42,12 @@ export default function ReduceMotionToggle() {
 
   return (
     <button
-      className="border-foreground relative flex cursor-pointer items-center justify-between gap-2 md:gap-3 rounded-full border p-1"
+      className="border-foreground relative flex cursor-pointer items-center justify-between gap-2 rounded-full border p-1 md:gap-3"
       style={{ backgroundColor: "var(--foreground)" }}
       onClick={toggleMotionReduced}
       role="switch"
       aria-label="Toggle site motion / animations"
+      aria-checked={motionReduced ? true : false}
     >
       <motion.div
         className="bg-background! border-foreground! absolute z-0 size-8 rounded-full border md:size-9"

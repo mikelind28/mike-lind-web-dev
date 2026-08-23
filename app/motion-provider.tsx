@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { MotionConfig, useReducedMotion } from "motion/react";
+import { useReducedMotion } from "motion/react";
 
 type MotionContextType = {
   motionReduced: boolean;
@@ -17,11 +17,12 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
 
   // Follow system preference until the user manually overrides
   useEffect(() => {
-    const stored = localStorage.getItem('motionReduced');
-    const hasManualOverride = localStorage.getItem('motionReducedManual') === 'true';
+    const stored = localStorage.getItem("motionReduced");
+    const hasManualOverride =
+      localStorage.getItem("motionReducedManual") === "true";
 
     if (hasManualOverride && stored !== null) {
-      setMotionReduced(stored === 'true');
+      setMotionReduced(stored === "true");
     } else {
       setMotionReduced(!!systemPrefersReduced);
     }
@@ -31,22 +32,24 @@ export function MotionProvider({ children }: { children: React.ReactNode }) {
   const toggleMotionReduced = () => {
     setMotionReduced((prev) => {
       const next = !prev;
-      localStorage.setItem('motionReduced', String(next));
-      localStorage.setItem('motionReducedManual', 'true'); // mark as an explicit user choice
+      localStorage.setItem("motionReduced", String(next));
+      localStorage.setItem("motionReducedManual", "true"); // mark as an explicit user choice
       return next;
     });
   };
 
   useEffect(() => {
     if (hydrated) {
-      document.documentElement.dataset.motion = motionReduced ? 'reduced' : 'full';
+      document.documentElement.dataset.motion = motionReduced
+        ? "reduced"
+        : "full";
     }
   }, [motionReduced, hydrated]);
 
   return (
     <MotionContext.Provider value={{ motionReduced, toggleMotionReduced }}>
       {/* <MotionConfig reducedMotion={motionReduced ? 'always' : 'never'}> */}
-        {children}
+      {children}
       {/* </MotionConfig> */}
     </MotionContext.Provider>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useMotionPreference } from "@/app/motion-provider";
-import { motion, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 
 const d1 =
   "M0 20.5C0 20.5 10.125 10.25 20.25 10.25C40.5 10.25 40.635 30.75 60.75 30.75C70.875 30.75 80 20.5 80 20.5";

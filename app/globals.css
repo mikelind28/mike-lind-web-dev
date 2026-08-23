@@ -7,9 +7,9 @@
   --my-black: #140f00;
 }
 
-:root[data-motion='reduced'] *,
-:root[data-motion='reduced'] *::before,
-:root[data-motion='reduced'] *::after {
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
@@ -46,7 +46,9 @@ html {
 
 .handjet {
   font-family: var(--font-handjet);
-  font-variation-settings: "ELGR" 2, "ELSH" 2;
+  font-variation-settings:
+    "ELGR" 2,
+    "ELSH" 2;
   font-weight: 300;
   letter-spacing: 2%;
 }
@@ -73,14 +75,14 @@ html {
   font-family: var(--font-stick-no-bills);
   font-weight: 600;
   font-size: 2rem;
-  letter-spacing: 2%; 
+  letter-spacing: 2%;
 }
 
 .ojuju {
   font-family: var(--font-ojuju);
   font-weight: 700;
   font-size: 2rem;
-  letter-spacing: 2%; 
+  letter-spacing: 2%;
 }
 
 .tektur {
@@ -103,7 +105,7 @@ html {
   font-family: var(--font-winky-rough);
   font-weight: 300;
   font-size: 2rem;
-  letter-spacing: -1%;  
+  letter-spacing: -1%;
 }
 
 .cycling-text {
@@ -111,129 +113,133 @@ html {
 }
 
 @keyframes font-cycle {
-  0%   {   
+  0% {
     font-family: var(--font-big-shoulders-stencil);
     font-variation-settings: "opsz" 10;
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: 2%;
   }
-  9.999%   {   
+  9.999% {
     font-family: var(--font-big-shoulders-stencil);
     font-variation-settings: "opsz" 10;
     font-weight: 700;
     font-size: 1.5rem;
     letter-spacing: 2%;
   }
-  10%  { 
+  10% {
     font-family: var(--font-handjet);
-    font-variation-settings: "ELGR" 2, "ELSH" 2;
+    font-variation-settings:
+      "ELGR" 2,
+      "ELSH" 2;
     font-weight: 400;
     font-size: 2rem;
     letter-spacing: 2%;
   }
-  19.999%  { 
+  19.999% {
     font-family: var(--font-handjet);
-    font-variation-settings: "ELGR" 2, "ELSH" 2;
+    font-variation-settings:
+      "ELGR" 2,
+      "ELSH" 2;
     font-weight: 400;
     font-size: 2rem;
     letter-spacing: 2%;
   }
-  20%  { 
+  20% {
     font-family: var(--font-teko);
     font-weight: 350;
     font-size: 2rem;
     letter-spacing: -1%;
   }
-  29.999%  { 
+  29.999% {
     font-family: var(--font-teko);
     font-weight: 350;
     font-size: 2rem;
     letter-spacing: -1%;
   }
-  30%  {   
+  30% {
     font-family: var(--font-pixelify-sans);
     font-weight: 400;
     font-size: 1.5rem;
     letter-spacing: 2%;
   }
-  39.999%  {   
+  39.999% {
     font-family: var(--font-pixelify-sans);
     font-weight: 400;
     font-size: 1.5rem;
     letter-spacing: 2%;
   }
-  40%  {   
+  40% {
     font-family: var(--font-stack-sans-notch);
     font-weight: 400;
     font-size: 1.75rem;
     letter-spacing: 0%;
   }
-  49.999%  {   
+  49.999% {
     font-family: var(--font-stack-sans-notch);
     font-weight: 400;
     font-size: 1.75rem;
     letter-spacing: 0%;
   }
-  50%  {   
+  50% {
     font-family: var(--font-stick-no-bills);
     font-weight: 600;
     font-size: 2rem;
     letter-spacing: 2%;
   }
-  59.999%  {   
+  59.999% {
     font-family: var(--font-stick-no-bills);
     font-weight: 600;
     font-size: 2rem;
     letter-spacing: 2%;
   }
-  60%  {   
+  60% {
     font-family: var(--font-ojuju);
     font-weight: 700;
     font-size: 2rem;
     letter-spacing: 2%;
   }
-  69.999%  {   
+  69.999% {
     font-family: var(--font-ojuju);
     font-weight: 700;
     font-size: 2rem;
     letter-spacing: 2%;
   }
-  70%  {   
+  70% {
     font-family: var(--font-tektur);
     font-variation-settings: "wdth" 100;
     font-weight: 800;
     font-size: 1.5rem;
     letter-spacing: 4%;
   }
-  79.999%  {   
+  79.999% {
     font-family: var(--font-tektur);
     font-variation-settings: "wdth" 100;
     font-weight: 800;
     font-size: 1.5rem;
     letter-spacing: 4%;
   }
-  80%  {   
+  80% {
     font-family: var(--font-tourney);
     font-variation-settings: "wdth" 100;
     font-weight: 600;
     font-size: 1.75rem;
     letter-spacing: 0%;
   }
-  89.999%  {   
+  89.999% {
     font-family: var(--font-tourney);
     font-variation-settings: "wdth" 100;
     font-weight: 600;
     font-size: 1.75rem;
     letter-spacing: 0%;
   }
-  90%  {   
+  90% {
     font-family: var(--font-winky-rough);
     font-weight: 300;
     font-size: 1.8rem;
     letter-spacing: -1%;
   }
-  99.999%  {   
+  99.999% {
     font-family: var(--font-winky-rough);
     font-weight: 300;
     font-size: 1.8rem;

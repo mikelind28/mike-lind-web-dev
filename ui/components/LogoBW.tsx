@@ -5,7 +5,7 @@ export default function LogoBW() {
       height="56"
       viewBox="0 0 715 715"
       xmlns="http://www.w3.org/2000/svg"
-      className="group-hover:scale-120 group-hover:rotate-45 transition-transform duration-300 ease-out group-hover:duration-2000"
+      className="transition-transform duration-300 ease-out group-hover:scale-120 group-hover:rotate-45 group-hover:duration-2000"
     >
       <path
         id="Logo"

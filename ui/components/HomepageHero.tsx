@@ -4,7 +4,6 @@ import { useMotionPreference } from "@/app/motion-provider";
 import {
   animate,
   AnimationPlaybackControls,
-  AnimationPlaybackControlsWithThen,
   motion,
   useMotionValue,
   useTime,
@@ -27,7 +26,7 @@ const MotionImage = motion.create(Image);
 
 export default function HomepageHero() {
   const { motionReduced } = useMotionPreference();
-  
+
   const time = useTime();
   const timeLooped = useTransform(time, (v) => v % 3000);
 
@@ -47,9 +46,10 @@ export default function HomepageHero() {
     ([pulse, hovered]: number[]) => pulse + (32 - pulse) * hovered,
   );
 
-  const filter = useTransform(
-    blur,
-    (b) => motionReduced ? 'drop-shadow(0px 0px 16px var(--my-yellow))' : `drop-shadow(0px 0px ${b}px var(--my-yellow))`,
+  const filter = useTransform(blur, (b) =>
+    motionReduced
+      ? "drop-shadow(0px 0px 16px var(--my-yellow))"
+      : `drop-shadow(0px 0px ${b}px var(--my-yellow))`,
   );
 
   const handleHoverStart = () => {
@@ -66,7 +66,7 @@ export default function HomepageHero() {
       bounce: 0.75,
       type: "spring",
       damping: 5,
-      mass: 1
+      mass: 1,
     });
   };
 
@@ -84,7 +84,7 @@ export default function HomepageHero() {
       bounce: 0.3,
       type: "spring",
       damping: 8,
-      mass: 0.5
+      mass: 0.5,
     });
   };
 

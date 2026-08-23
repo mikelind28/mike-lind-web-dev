@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducedMotion, motion } from "motion/react";
+import { motion } from "motion/react";
 import Link from "next/link";
 import { IoChevronForward } from "react-icons/io5";
 import BGFireworks from "./BGFireworks";
@@ -20,7 +20,7 @@ function PortfolioPreviewItem({
   return (
     <Link
       href={`/portfolio/${path}`}
-      className="group bg-my-yellow text-my-black w-full max-w-120 border sm:max-w-130 shadow-[4px_4px_var(--foreground)]"
+      className="group bg-my-yellow text-my-black w-full max-w-120 border shadow-[4px_4px_var(--foreground)] sm:max-w-130"
     >
       <hgroup className="xs:p-4 flex flex-col gap-3 p-3">
         <div className="border-b-my-black flex items-center justify-between gap-4 border-b border-dashed pb-2">
@@ -49,7 +49,7 @@ export default function PortfolioPreview({
   projects: Record<string, any>[];
 }) {
   return (
-    <div className="py-8 relative flex flex-col md:flex-row overflow-hidden">
+    <div className="relative flex flex-col overflow-hidden py-8 md:flex-row">
       <BGFireworks count={10} />
       <section className="xs:gap-5 mx-auto flex w-fit flex-col items-center gap-5 px-3 py-7">
         <h2 className="home-page">

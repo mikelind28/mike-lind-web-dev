@@ -6,11 +6,10 @@ import { animate } from "motion";
 import {
   motion,
   useMotionTemplate,
-  useReducedMotion,
   useScroll,
   useTransform,
 } from "motion/react";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { FaForward } from "react-icons/fa";
 import { IoPause, IoPlay, IoRefresh } from "react-icons/io5";
 import HomepageHero from "./HomepageHero";
@@ -86,7 +85,7 @@ function AnimatedText({ text }: { text: string }) {
   const chars = text.split(delimiter);
 
   return (
-    <div className="bg-my-black text-my-yellow 2xs:p-5 xs:p-6 relative z-1 mx-auto flex max-w-130 flex-col gap-2 p-4 text-2xl xl:text-3xl xl:max-w-160 xl:p-8">
+    <div className="bg-my-black text-my-yellow 2xs:p-5 xs:p-6 relative z-1 mx-auto flex max-w-130 flex-col gap-2 p-4 text-2xl xl:max-w-160 xl:p-8 xl:text-3xl">
       <div className="-ml-1 flex items-center gap-3">
         {complete ? (
           <button

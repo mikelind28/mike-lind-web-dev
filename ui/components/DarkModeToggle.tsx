@@ -31,6 +31,7 @@ export default function DarkModeToggle() {
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       role="switch"
       aria-label="Toggle dark mode"
+      aria-checked={resolvedTheme === "dark" ? true : false}
     >
       <motion.div
         className="absolute z-0 size-8 rounded-full border md:size-9"

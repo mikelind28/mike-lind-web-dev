@@ -1,6 +1,6 @@
 "use client";
 
-import { handjet, pixelifySans } from "@/app/fonts";
+import { handjet } from "@/app/fonts";
 import { useMotionPreference } from "@/app/motion-provider";
 import { stagger } from "motion";
 import {
@@ -71,7 +71,7 @@ function ProficiencyListItem({
       ref={liRef}
       variants={item}
     >
-      <div className="bg-background z-1 flex h-12.5 sm:h-16 items-center gap-3 border px-3 py-2 sm:px-4">
+      <div className="bg-background z-1 flex h-12.5 items-center gap-3 border px-3 py-2 sm:h-16 sm:px-4">
         {imgSrc && (
           <motion.div
             className="relative h-8 w-8 rounded-sm"
@@ -88,8 +88,12 @@ function ProficiencyListItem({
           </motion.div>
         )}
         <motion.p
-          className={`${handjet.className} leading-5! font-medium text-2xl sm:text-3xl`}
-          style={{ letterSpacing: motionReduced ? '2%' : responsiveLetterSpacingPercent }}
+          className={`${handjet.className} text-2xl leading-5! font-medium sm:text-3xl`}
+          style={{
+            letterSpacing: motionReduced
+              ? "2%"
+              : responsiveLetterSpacingPercent,
+          }}
         >
           {name}
         </motion.p>
@@ -116,10 +120,10 @@ export default function Proficiencies({
   const ulRef = useRef<HTMLUListElement>(null);
 
   return (
-    <section className="2xs:px-4 bg-background relative z-1 flex flex-col items-center gap-5 px-3 py-7 xs:gap-5 md:px-8">
+    <section className="2xs:px-4 bg-background xs:gap-5 relative z-1 flex flex-col items-center gap-5 px-3 py-7 md:px-8">
       <h2 className="home-page">
         Pro-
-        <br/>
+        <br />
         ficiencies
       </h2>
       <motion.ul
