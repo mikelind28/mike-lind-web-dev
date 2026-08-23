@@ -3,10 +3,10 @@ import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import Header from "@/ui/layout/Header";
 import Footer from "@/ui/layout/Footer";
-import { ibmPlexMonoRegular } from "./fonts";
-import { MotionConfig } from "motion/react";
+import { fontVariables, ibmPlexMonoRegular } from "./fonts";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
+import { MotionProvider } from "./motion-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://mike-lind-dev.com"),
@@ -53,24 +53,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <MotionConfig reducedMotion="user">
-      <html lang="en" suppressHydrationWarning className={`h-full antialiased`}>
-        <body
-          className={`${ibmPlexMonoRegular.className} bg-background text-foreground grid min-h-full grid-rows-[auto_1fr_auto] tracking-[2%]`}
+    <html lang="en" suppressHydrationWarning className={`h-full antialiased`}>
+      <body
+        className={`${ibmPlexMonoRegular.className} bg-background text-foreground grid min-h-full grid-rows-[auto_1fr_auto] tracking-[2%] ${fontVariables}`}
+      >
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="system"
+          enableSystem
         >
-          <ThemeProvider
-            attribute="data-theme"
-            defaultTheme="system"
-            enableSystem
-          >
+          <MotionProvider>
             <Header />
             {children}
             <Footer />
-          </ThemeProvider>
-          <Analytics />
-          <SpeedInsights />
-        </body>
-      </html>
-    </MotionConfig>
+          </MotionProvider>
+        </ThemeProvider>
+        <Analytics />
+        <SpeedInsights />
+      </body>
+    </html>
   );
 }

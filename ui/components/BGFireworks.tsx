@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "motion/react";
 import { useEffect, useState } from "react";
+import { useMotionPreference } from "@/app/motion-provider";
 import { useReducedMotion } from "motion/react";
 
 type GridItemConfig = {
@@ -13,11 +13,11 @@ type GridItemConfig = {
 };
 
 function randomSize() {
-  return Math.floor(Math.random() * 50 + 10);
+  return Math.floor(Math.random() * 50 + 18);
 }
 
 function randomDuration() {
-  return Math.random() * 3 + 0.5;
+  return Math.random() * 3 + 1;
 }
 
 function randomPercentage() {
@@ -44,26 +44,31 @@ const frameFive = [0, 5, 30, 35];
 const frames = [frameOne, frameTwo, frameThree, frameFour, frameFive];
 
 function colorFor(index: number, frame: number[]) {
-  return frame.includes(index) ? "var(--foreground)" : "var(--background)";
+  return frame.includes(index) ? "var(--foreground)" : "transparent";
 }
 
-function GridItem({ index, duration }: { index: number; duration: number }) {
+// Precomputed ONCE at module load — same for every Grid instance,
+// since it only depends on cell index (0-35), not on any per-render state.
+type CellColors = {
+  "--c1": string;
+  "--c2": string;
+  "--c3": string;
+  "--c4": string;
+  "--c5": string;
+};
+
+const CELL_COLORS: CellColors[] = Array.from({ length: 36 }, (_, index) => {
   const [c1, c2, c3, c4, c5] = frames.map((frame) => colorFor(index, frame));
+  return { "--c1": c1, "--c2": c2, "--c3": c3, "--c4": c4, "--c5": c5 };
+});
 
-  const values = [c1, c1, c2, c2, c3, c3, c4, c4, c5, c5];
-  const times = [0, 0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.8, 0.8, 1];
+function GridItem({ index, duration }: { index: number; duration: number }) {
+  const style = {
+    ...CELL_COLORS[index],
+    "--duration": `${duration}s`,
+  } as React.CSSProperties;
 
-  return (
-    <motion.div
-      animate={{ backgroundColor: values }}
-      transition={{
-        duration: duration,
-        times,
-        repeat: Infinity,
-        ease: "linear",
-      }}
-    />
-  );
+  return <div className="grid-item" style={style} />;
 }
 
 function Grid() {
@@ -90,7 +95,7 @@ function Grid() {
 
   return (
     <div
-      className="fixed -z-1 h-screen w-screen"
+      className="absolute inset-0 -z-1 size-full"
       style={{
         top: `${config.yCoorPercent}%`,
         left: `${config.xCoorPercent}%`,
@@ -98,7 +103,7 @@ function Grid() {
     >
       <div
         key={config.id}
-        className="bg-background grid grid-cols-6 grid-rows-6 gap-px"
+        className="grid grid-cols-6 grid-rows-6 gap-px"
         style={{ width: config.size, height: config.size }}
       >
         {Array.from({ length: 36 }).map((_item, index) => (
@@ -109,12 +114,15 @@ function Grid() {
   );
 }
 
-export default function BGFireworks() {
-  const shouldReduceMotion = useReducedMotion();
+export default function BGFireworks({ count }: { count: number }) {
+  const { motionReduced } = useMotionPreference();
+
   return (
     <>
-      {!shouldReduceMotion &&
-        Array.from({ length: 10 }).map((_item, index) => <Grid key={index} />)}
+      {!motionReduced &&
+        Array.from({ length: count }).map((_item, index) => (
+          <Grid key={index} />
+        ))}
     </>
   );
 }

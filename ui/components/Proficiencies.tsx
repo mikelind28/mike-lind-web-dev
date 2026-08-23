@@ -1,5 +1,7 @@
 "use client";
 
+import { handjet, pixelifySans } from "@/app/fonts";
+import { useMotionPreference } from "@/app/motion-provider";
 import { stagger } from "motion";
 import {
   motion,
@@ -60,18 +62,20 @@ function ProficiencyListItem({
   );
   const responsiveLetterSpacingPercent = useMotionTemplate`${responsiveLetterSpacing}%`;
 
+  const { motionReduced } = useMotionPreference();
+
   return (
     <motion.li
-      className="bg-background w-full max-w-110 md:w-fit"
+      className="bg-background w-full max-w-120 md:w-fit"
       style={{ boxShadow: "4px 4px var(--foreground)" }}
       ref={liRef}
       variants={item}
     >
-      <div className="bg-background z-1 flex h-12.5 items-center gap-3 border px-3 py-2">
+      <div className="bg-background z-1 flex h-12.5 sm:h-16 items-center gap-3 border px-3 py-2 sm:px-4">
         {imgSrc && (
           <motion.div
             className="relative h-8 w-8 rounded-sm"
-            style={{ scale: responsiveScale }}
+            style={{ scale: motionReduced ? 1 : responsiveScale }}
           >
             <Image
               src={imgSrc}
@@ -84,8 +88,8 @@ function ProficiencyListItem({
           </motion.div>
         )}
         <motion.p
-          className="leading-5! font-medium"
-          style={{ letterSpacing: responsiveLetterSpacingPercent }}
+          className={`${handjet.className} leading-5! font-medium text-2xl sm:text-3xl`}
+          style={{ letterSpacing: motionReduced ? '2%' : responsiveLetterSpacingPercent }}
         >
           {name}
         </motion.p>
@@ -112,8 +116,12 @@ export default function Proficiencies({
   const ulRef = useRef<HTMLUListElement>(null);
 
   return (
-    <section className="2xs:px-4 bg-background relative z-1 flex flex-col items-center gap-4 px-3 md:gap-6 md:px-8">
-      <h2 className="home-page">Proficiencies</h2>
+    <section className="2xs:px-4 bg-background relative z-1 flex flex-col items-center gap-5 px-3 py-7 xs:gap-5 md:px-8">
+      <h2 className="home-page">
+        Pro-
+        <br/>
+        ficiencies
+      </h2>
       <motion.ul
         ref={ulRef}
         variants={container}

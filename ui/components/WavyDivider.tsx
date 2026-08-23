@@ -1,5 +1,6 @@
 "use client";
 
+import { useMotionPreference } from "@/app/motion-provider";
 import { motion, useReducedMotion } from "motion/react";
 
 const d1 =
@@ -8,8 +9,8 @@ const d1 =
 const d2 =
   "M0 20.5C0 20.5 10.125 30.75 20.25 30.75C40.5 30.75 40.635 10.25 60.75 10.25C70.875 10.25 80 20.5 80 20.5";
 
-export default function Divider() {
-  const shouldReduceMotion = useReducedMotion();
+export default function WavyDivider() {
+  const { motionReduced } = useMotionPreference();
   return (
     <motion.svg
       className="my-4 w-full scale-x-150"
@@ -18,19 +19,19 @@ export default function Divider() {
       fill="none"
       initial={{ x: "-40px", scaleY: 0.75 }}
       animate={{
-        x: shouldReduceMotion ? "40px" : "40px",
-        scaleY: shouldReduceMotion ? 0.75 : 1.5,
+        x: motionReduced ? "40px" : "40px",
+        scaleY: motionReduced ? 0.75 : 1.5,
       }}
       transition={{
         x: {
           duration: 3,
-          repeat: Infinity,
+          repeat: motionReduced ? 0 : Infinity,
           repeatType: "loop",
           ease: "linear",
         },
         scaleY: {
           duration: 3,
-          repeat: Infinity,
+          repeat: motionReduced ? 0 : Infinity,
           repeatType: "mirror",
           ease: "easeInOut",
         },
@@ -53,11 +54,11 @@ export default function Divider() {
               d: d1,
             }}
             animate={{
-              d: shouldReduceMotion ? d1 : d2,
+              d: motionReduced ? d1 : d2,
             }}
             transition={{
               duration: 1.5,
-              repeat: Infinity,
+              repeat: motionReduced ? 0 : Infinity,
               repeatType: "mirror",
               ease: "easeInOut",
             }}

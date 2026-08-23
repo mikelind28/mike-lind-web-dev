@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Divider from "../components/Divider";
+import WavyDivider from "../components/WavyDivider";
 import LogoColor from "../components/LogoColor";
+import { stackSansNotch } from "@/app/fonts";
 
 function GitHubIcon() {
   return (
@@ -12,8 +13,8 @@ function GitHubIcon() {
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="98"
-        height="96"
+        width="64"
+        height="64"
         viewBox="0 0 98 96"
         fill="none"
         aria-hidden="true"
@@ -30,21 +31,32 @@ function GitHubIcon() {
 
 export default function Footer() {
   return (
-    <footer className="bg-background relative z-1 flex flex-col items-center gap-4 overflow-hidden px-4 py-6">
-      <Divider />
-      <h2 className="home-page">Contact</h2>
-      <Link href="mailto:mike@mike-lind-dev.com" className="text-xl">
+    <footer className="bg-background relative z-1 flex flex-col items-start gap-6 overflow-hidden px-4 py-6 sm:gap-6">
+      <WavyDivider />
+      <h2 className="home-page">
+        Con-
+        <br />
+        tact
+      </h2>
+      <Link
+        href="mailto:mike@mike-lind-dev.com"
+        className="big-shoulders-stencil px-2 text-3xl sm:text-3xl"
+      >
         mike@mike-lind-dev.com
       </Link>
-      <GitHubIcon />
-      <Link href="/" className="flex flex-col items-center gap-2 text-xl">
-        <div className="text-center">
-          <p>mike lind</p>
-          <div className="bg-foreground h-px w-full" />
-          <p>web dev</p>
-        </div>
-        <LogoColor />
-      </Link>
+      <div className="flex w-full items-end justify-between">
+        <Link href="/" className={`${stackSansNotch.className} text-2xl`}>
+          <div className="text-center">
+            <p>mike lind</p>
+            <div className="bg-foreground h-px w-full" />
+            <p>web dev</p>
+          </div>
+        </Link>
+        <Link href="/">
+          <LogoColor />
+        </Link>
+        <GitHubIcon />
+      </div>
     </footer>
   );
 }

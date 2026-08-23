@@ -1,9 +1,10 @@
 import PortfolioPreview from "@/ui/components/PortfolioPreview";
-import Intro from "@/ui/components/Intro";
 import Proficiencies from "@/ui/components/Proficiencies";
 import { sql } from "@/lib/db";
-import BGFireworks from "@/ui/components/BGFireworks";
-import LogoBW from "@/ui/components/LogoBW";
+import Intro from "@/ui/components/Intro";
+import HomepageBanner from "@/ui/components/HomepageHero";
+import Image from "next/image";
+import CrosshatchDivider from "@/ui/components/CrosshatchDivider";
 
 function publicImageUrl(objectKey: string) {
   return `${process.env.AWS_ENDPOINT_URL_S3}/${process.env.AWS_BUCKET_NAME}/${objectKey}`;
@@ -29,13 +30,20 @@ export default async function Home() {
   }));
 
   return (
-    <main className="relative flex flex-col gap-10 overflow-hidden pb-4 text-xl">
-      <BGFireworks />
+    <main className="relative flex flex-col  xl:gap-12 overflow-hidden text-xl">
       <Intro
         text={`I'm a full-stack web developer, specializing in front-end development and design.`}
       />
       <PortfolioPreview projects={projects} />
+      <CrosshatchDivider />
+      <div className="bg-background my-8">
+        <div
+          className="bg-foreground h-100 w-screen mask-[url('/happy-mac.png')] mask-size-[100px_100px] mask-center"
+        />
+      </div>
+      <CrosshatchDivider />
       <Proficiencies proficiencies={proficienciesWithUrls} />
+      <CrosshatchDivider />
     </main>
   );
 }

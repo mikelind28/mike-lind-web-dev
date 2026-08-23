@@ -1,10 +1,11 @@
 export default function LogoBW() {
   return (
     <svg
-      width="48"
-      height="48"
+      width="56"
+      height="56"
       viewBox="0 0 715 715"
       xmlns="http://www.w3.org/2000/svg"
+      className="group-hover:scale-120 group-hover:rotate-45 transition-transform duration-300 ease-out group-hover:duration-2000"
     >
       <path
         id="Logo"
