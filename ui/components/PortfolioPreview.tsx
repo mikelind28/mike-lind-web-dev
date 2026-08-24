@@ -27,7 +27,7 @@ function PortfolioPreviewItem({
             </h3>
             <IoChevronForward className="group-hover:animate-side-bounce size-7 shrink-0" />
           </div>
-          <p className="text-lg xl:text-xl leading-relaxed">{description}</p>
+          <p className="text-lg leading-relaxed xl:text-xl">{description}</p>
         </hgroup>
         <div className="bg-background border-t-foreground overflow-hidden border-t">
           <motion.div
@@ -52,7 +52,7 @@ export default function PortfolioPreview({
       <div className="overflow-hidden">
         <BGFireworks count={10} />
       </div>
-      <section className="mx-auto w-full md:items-start max-w-120 px-3 py-15 sm:max-w-130 md:flex md:gap-12 md:max-w-170 lg:max-w-200">
+      <section className="mx-auto w-full max-w-120 px-3 py-15 sm:max-w-130 md:flex md:max-w-170 md:items-start md:gap-12 lg:max-w-200">
         <h2 className="home-page md:sticky md:top-20">
           Port-
           <br />

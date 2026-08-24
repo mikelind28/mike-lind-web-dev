@@ -56,10 +56,10 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`h-full w-screen overflow-x-hidden antialiased`}
+      className={`h-full max-w-screen overflow-x-hidden antialiased`}
     >
       <body
-        className={`${ibmPlexMonoRegular.className} bg-background text-foreground grid min-h-full grid-rows-[auto_1fr_auto] tracking-[2%] ${fontVariables}`}
+        className={`${ibmPlexMonoRegular.className} bg-background text-foreground grid min-h-full max-w-screen grid-rows-[auto_1fr_auto] tracking-[2%] ${fontVariables}`}
       >
         <ThemeProvider
           attribute="data-theme"

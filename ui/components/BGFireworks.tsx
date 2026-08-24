@@ -20,7 +20,7 @@ function randomDuration() {
 }
 
 function randomPercentage() {
-  return Math.floor(Math.random() * 100);
+  return Math.floor(Math.random() * 95);
 }
 
 let nextId = 0;

@@ -28,7 +28,7 @@ export default async function Home() {
   }));
 
   return (
-    <main className="relative flex flex-col text-xl xl:gap-12 w-screen">
+    <main className="relative flex w-screen max-w-screen flex-col overflow-hidden text-xl md:overflow-visible xl:gap-12">
       <Intro
         text={`I'm a full-stack web developer, specializing in front-end development and design.`}
       />

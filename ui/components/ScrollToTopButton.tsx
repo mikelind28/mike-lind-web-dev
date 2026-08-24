@@ -12,7 +12,7 @@ export default function ScrollToTopButton() {
   return (
     <button
       onClick={handleClick}
-      className={`${handjet.className} bg-foreground text-background border-background outline-foreground mx-auto flex animate-bounce mb-8 items-center gap-2 rounded-full border px-4 py-1 text-lg outline`}
+      className={`${handjet.className} bg-foreground text-background border-background outline-foreground mx-auto mb-8 flex animate-bounce items-center gap-2 rounded-full border px-4 py-1 text-lg outline`}
     >
       Back to top <IoArrowUpCircleOutline />
     </button>

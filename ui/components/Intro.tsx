@@ -85,7 +85,7 @@ function AnimatedText({ text }: { text: string }) {
   const chars = text.split(delimiter);
 
   return (
-    <div className="bg-my-black text-my-yellow 2xs:p-5 xs:p-6 relative z-1 mx-auto flex max-w-115 flex-col gap-2 p-4 text-2xl md:max-w-130 lg:max-w-140 lg:px-12 lg:pt-8 lg:pb-9 xl:max-w-160 lg:gap-3">
+    <div className="bg-my-black text-my-yellow 2xs:p-5 xs:p-6 relative z-1 mx-auto flex max-w-115 flex-col gap-2 p-4 text-2xl md:max-w-130 lg:max-w-140 lg:gap-3 lg:px-12 lg:pt-8 lg:pb-9 xl:max-w-160">
       <div className="-ml-1 flex items-center gap-3">
         {complete ? (
           <button

@@ -27,7 +27,7 @@ export default async function PortfolioItemPage({
   `;
 
   return (
-    <main className="mt-4 md:mt-0 pt-6 md:pt-0 relative flex w-full flex-col md:border-l md:border-b">
+    <main className="relative mt-4 flex w-full flex-col pt-6 md:mt-0 md:border-b md:border-l md:pt-0">
       <div className="bg-foreground absolute inset-0 z-0 mask-[url('/patterns/cross-hatch.svg')] mask-size-[50px_50px] mask-center mask-repeat" />
       <PortfolioItemDetails projectData={projectData} />
       <div className="2xs:px-6 2xs:py-8 flex flex-col gap-8 px-4 py-6">

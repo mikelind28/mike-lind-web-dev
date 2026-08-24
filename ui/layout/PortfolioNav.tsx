@@ -1,8 +1,6 @@
 "use client";
 
-import {
-  stickNoBills,
-} from "@/app/fonts";
+import { stickNoBills } from "@/app/fonts";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
@@ -28,10 +26,12 @@ export default function PortfolioNav({
           borderBottom: isOpen ? "2px solid var(--my-black)" : "none",
         }}
         transition={{ delay: isOpen ? 0 : 0.3, duration: 0 }}
-        className="2xs:px-6 xs:px-8 bg-my-yellow text-my-black flex w-full cursor-pointer items-center justify-between gap-4 px-5 pt-3 pb-2 md:hidden border-t-1"
+        className="2xs:px-6 xs:px-8 bg-my-yellow text-my-black flex w-full cursor-pointer items-center justify-between gap-4 border-t-1 px-5 pt-3 pb-2 md:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <p className={`${stickNoBills.className} text-3xl font-bold tracking-[4%]`}>
+        <p
+          className={`${stickNoBills.className} text-3xl font-bold tracking-[4%]`}
+        >
           Portfolio
         </p>
         <RotatingChevron
@@ -59,15 +59,12 @@ export default function PortfolioNav({
           transition={{ duration: 0.1 }}
         >
           {projects.map((item) => (
-            <li
-              key={item.id}
-              className={"border-dotted md:border-b-2"}
-            >
+            <li key={item.id} className={"border-dotted md:border-b-2"}>
               <Link
                 href={`/portfolio/${item.slug}`}
-                className={`${stickNoBills.className} flex border-l-foreground gap-3 ${
+                className={`${stickNoBills.className} border-l-foreground flex gap-3 ${
                   item.slug === slug
-                    ? `text-2xl font-bold md:text-3xl text-my-black bg-my-yellow`
+                    ? `text-my-black bg-my-yellow text-2xl font-bold md:text-3xl`
                     : "text-xl font-normal md:text-2xl"
                 }`}
                 style={
@@ -84,14 +81,20 @@ export default function PortfolioNav({
                       }
                 }
               >
-                {item.slug === slug && <BiSolidRightArrowSquare className="size-6 shrink-0 translate-y-0.5 md:size-8" />}
+                {item.slug === slug && (
+                  <BiSolidRightArrowSquare className="size-6 shrink-0 translate-y-0.5 md:size-8" />
+                )}
                 {item.name}
               </Link>
             </li>
           ))}
         </motion.div>
       </motion.ul>
-      {isOpen && <div className="md:hidden"><CrosshatchDivider /></div>}
+      {isOpen && (
+        <div className="md:hidden">
+          <CrosshatchDivider />
+        </div>
+      )}
     </motion.nav>
   );
 }

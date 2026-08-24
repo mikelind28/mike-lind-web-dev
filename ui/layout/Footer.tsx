@@ -27,11 +27,10 @@ function GitHubIcon() {
 }
 
 export default function Footer() {
-
   return (
     <footer className="bg-background relative z-1 overflow-hidden">
       <WavyDivider />
-      <section className="mx-auto w-full max-w-120 px-3 py-7 md:max-w-full md:px-8 md:flex md:gap-12 md:items-center lg:px-12">
+      <section className="mx-auto w-full max-w-120 px-3 py-7 md:flex md:max-w-full md:items-center md:gap-12 md:px-8 lg:px-12">
         <h2 className="home-page">
           Con-
           <br />
