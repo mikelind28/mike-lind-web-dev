@@ -6,8 +6,8 @@ import { usePathname } from "next/navigation";
 export default function NotFound() {
   const path = usePathname();
   return (
-    <div className="flex flex-col items-center gap-8 p-8 text-center">
-      <h2 className="font-bold">
+    <div className="flex flex-col items-center justify-center gap-8 p-8 text-center">
+      <h2 className="font-bold text-lg 2xs:text-xl sm:text-2xl">
         Couldn't find "{path.replace("/portfolio/", "")}".
       </h2>
       <Link

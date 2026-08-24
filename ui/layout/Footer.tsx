@@ -1,9 +1,11 @@
 import Link from "next/link";
 import WavyDivider from "../components/WavyDivider";
 import LogoColor from "../components/LogoColor";
-import { stackSansNotch } from "@/app/fonts";
+import { handjet, stackSansNotch } from "@/app/fonts";
 import { IoIosMail } from "react-icons/io";
 import CrosshatchDivider from "../components/CrosshatchDivider";
+import { IoArrowUpCircleOutline } from "react-icons/io5";
+import ScrollToTopButton from "../components/ScrollToTopButton";
 
 function GitHubIcon() {
   return (
@@ -25,6 +27,7 @@ function GitHubIcon() {
 }
 
 export default function Footer() {
+
   return (
     <footer className="bg-background relative z-1 overflow-hidden">
       <WavyDivider />
@@ -57,7 +60,7 @@ export default function Footer() {
         </div>
       </section>
       <CrosshatchDivider />
-      <div className="flex w-full flex-col items-center gap-3 px-3 py-5">
+      <div className="mb-6 flex w-full flex-col items-center gap-3 px-3 py-5">
         <Link href="/" className={`${stackSansNotch.className} text-2xl`}>
           <div className="text-center">
             <p>mike lind</p>
@@ -69,6 +72,7 @@ export default function Footer() {
           <LogoColor />
         </Link>
       </div>
+      <ScrollToTopButton />
     </footer>
   );
 }

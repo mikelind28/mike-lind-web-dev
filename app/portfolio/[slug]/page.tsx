@@ -27,10 +27,10 @@ export default async function PortfolioItemPage({
   `;
 
   return (
-    <main className="relative flex w-full flex-col md:border-y">
+    <main className="mt-4 md:mt-0 pt-6 md:pt-0 relative flex w-full flex-col md:border-l md:border-b">
       <div className="bg-foreground absolute inset-0 z-0 mask-[url('/patterns/cross-hatch.svg')] mask-size-[50px_50px] mask-center mask-repeat" />
-      <div className="2xs:px-6 2xs:py-8 flex flex-col gap-2 px-4 py-6">
-        <PortfolioItemDetails projectData={projectData} />
+      <PortfolioItemDetails projectData={projectData} />
+      <div className="2xs:px-6 2xs:py-8 flex flex-col gap-8 px-4 py-6">
         <div className="flex flex-col items-center gap-8 md:flex-row md:flex-wrap md:items-stretch">
           {images.map((img) => {
             return <PortfolioItemScreenshot key={img.id} img={img} />;

@@ -1,12 +1,16 @@
 "use client";
 
-import { ibmPlexMonoMedium, ibmPlexMonoSemibold } from "@/app/fonts";
+import {
+  stickNoBills,
+} from "@/app/fonts";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useState } from "react";
-import { IoChevronDown } from "react-icons/io5";
+import { FiChevronDown } from "react-icons/fi";
+import CrosshatchDivider from "../components/CrosshatchDivider";
+import { BiSolidRightArrowSquare } from "react-icons/bi";
 
-const RotatingChevron = motion.create(IoChevronDown);
+const RotatingChevron = motion.create(FiChevronDown);
 
 export default function PortfolioNav({
   slug,
@@ -18,44 +22,53 @@ export default function PortfolioNav({
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <nav className="bg-background z-10 border-t border-b-2 md:border-r">
+    <motion.nav className="bg-background z-9 border-b-4 md:border-r">
       <motion.button
         animate={{
-          borderBottom: isOpen ? "1px solid var(--foreground)" : "none",
+          borderBottom: isOpen ? "2px solid var(--my-black)" : "none",
         }}
         transition={{ delay: isOpen ? 0 : 0.3, duration: 0 }}
-        className="2xs:px-6 xs:px-8 2xs:py-3 bg-background sticky top-0 flex w-full cursor-pointer items-center justify-between gap-4 px-5 py-2 md:hidden"
+        className="2xs:px-6 xs:px-8 bg-my-yellow text-my-black flex w-full cursor-pointer items-center justify-between gap-4 px-5 pt-3 pb-2 md:hidden border-t-1"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <p className={`${ibmPlexMonoMedium.className} text-2xl`}>Portfolio</p>
+        <p className={`${stickNoBills.className} text-3xl font-bold tracking-[4%]`}>
+          Portfolio
+        </p>
         <RotatingChevron
-          className="size-6 h-full"
-          initial={{ rotate: -180 }}
-          animate={{ rotate: isOpen ? -180 : 0 }}
+          className="size-8 h-full shrink-0 stroke-2"
+          initial={{ rotate: 0 }}
+          animate={{ rotate: isOpen ? 0 : -180 }}
         />
       </motion.button>
+      <div className="md:hidden">
+        <CrosshatchDivider />
+      </div>
       <motion.ul
-        className="bg-background overflow-hidden border-t md:sticky md:top-2 md:border-t-0"
+        className="bg-background overflow-hidden md:sticky md:top-16 md:border-t-0"
         initial={{ height: isOpen ? "auto" : 0 }}
         animate={{ height: isOpen ? "auto" : 0 }}
         exit={{ height: 0 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
+        {/* wrapper helps animation */}
         <motion.div
-          className="2xs:p-6 2xs:pl-5 xs:px-7 p-4 pl-3 md:pl-5"
+          className="divide-y-2 md:divide-y-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.1 }}
         >
           {projects.map((item) => (
-            <li key={item.id}>
+            <li
+              key={item.id}
+              className={"border-dotted md:border-b-2"}
+            >
               <Link
                 href={`/portfolio/${item.slug}`}
-                className={`border-l-foreground block py-2 ${
+                className={`${stickNoBills.className} flex border-l-foreground gap-3 ${
                   item.slug === slug
-                    ? `${ibmPlexMonoSemibold.className} text-xl`
-                    : "text-lg"
+                    ? `text-2xl font-bold md:text-3xl text-my-black bg-my-yellow`
+                    : "text-xl font-normal md:text-2xl"
                 }`}
                 style={
                   item.slug === slug
@@ -63,20 +76,22 @@ export default function PortfolioNav({
                         textDecoration: "underline 0.07rem",
                         textUnderlineOffset: "0.25rem",
                         borderLeft: "4px solid var(--foreground)",
-                        paddingLeft: "1.25rem",
+                        padding: "20px 16px 20px 8px",
                       }
                     : {
                         borderLeft: "1px solid var(--foreground)",
-                        paddingLeft: "1.5rem",
+                        padding: "16px 16px 16px 24px",
                       }
                 }
               >
+                {item.slug === slug && <BiSolidRightArrowSquare className="size-6 shrink-0 translate-y-0.5 md:size-8" />}
                 {item.name}
               </Link>
             </li>
           ))}
         </motion.div>
       </motion.ul>
-    </nav>
+      {isOpen && <div className="md:hidden"><CrosshatchDivider /></div>}
+    </motion.nav>
   );
 }
