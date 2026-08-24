@@ -26,7 +26,7 @@ export default function PortfolioNav({
           borderBottom: isOpen ? "2px solid var(--my-black)" : "none",
         }}
         transition={{ delay: isOpen ? 0 : 0.3, duration: 0 }}
-        className="2xs:px-6 xs:px-8 bg-my-yellow text-my-black flex w-full cursor-pointer items-center justify-between gap-4 border-t-1 px-5 pt-3 pb-2 md:hidden"
+        className="2xs:px-6 xs:px-8 bg-my-yellow text-my-black flex w-full cursor-pointer items-center justify-between gap-4 border-t px-5 pt-3 pb-2 md:hidden"
         onClick={() => setIsOpen(!isOpen)}
       >
         <p
@@ -59,12 +59,12 @@ export default function PortfolioNav({
           transition={{ duration: 0.1 }}
         >
           {projects.map((item) => (
-            <li key={item.id} className={"border-dotted md:border-b-2"}>
+            <li key={item.id} className={"border-dotted md:border-b-2 hover:underline focus-visible:border-3! focus-visible:border-[#fe2e93]! focus-visible:z-10!"}>
               <Link
                 href={`/portfolio/${item.slug}`}
                 className={`${stickNoBills.className} border-l-foreground flex gap-3 ${
                   item.slug === slug
-                    ? `text-my-black bg-my-yellow text-2xl font-bold md:text-3xl`
+                    ? `text-my-black bg-my-yellow text-2xl font-bold md:text-3xl cursor-default`
                     : "text-xl font-normal md:text-2xl"
                 }`}
                 style={
@@ -72,7 +72,7 @@ export default function PortfolioNav({
                     ? {
                         textDecoration: "underline 0.07rem",
                         textUnderlineOffset: "0.25rem",
-                        borderLeft: "4px solid var(--foreground)",
+                        borderLeft: "4px solid var(--color-my-black)",
                         padding: "20px 16px 20px 8px",
                       }
                     : {

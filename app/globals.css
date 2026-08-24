@@ -5,6 +5,7 @@
   --my-yellow: #faaf00;
   --foreground: #140f00;
   --my-black: #140f00;
+  --my-pink: #fe2e93;
 }
 
 :root[data-motion="reduced"] *,
@@ -13,6 +14,15 @@
   animation-duration: 0.01ms !important;
   animation-iteration-count: 1 !important;
   transition-duration: 0.01ms !important;
+}
+
+@layer base {
+  *:focus-visible {
+    @apply outline-[#fe2e93] outline-3 outline-offset-2;
+  }
+  ::selection {
+    @apply bg-[#ff9301] text-my-black;
+  }
 }
 
 @theme inline {

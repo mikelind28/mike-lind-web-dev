@@ -1,10 +1,9 @@
 import Link from "next/link";
 import WavyDivider from "../components/WavyDivider";
 import LogoColor from "../components/LogoColor";
-import { handjet, stackSansNotch } from "@/app/fonts";
+import { stackSansNotch } from "@/app/fonts";
 import { IoIosMail } from "react-icons/io";
 import CrosshatchDivider from "../components/CrosshatchDivider";
-import { IoArrowUpCircleOutline } from "react-icons/io5";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 
 function GitHubIcon() {

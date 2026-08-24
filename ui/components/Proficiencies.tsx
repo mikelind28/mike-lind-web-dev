@@ -10,28 +10,31 @@ import {
   useTransform,
 } from "motion/react";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useSyncExternalStore } from "react";
 
 // check window width to conditionally apply animations below
+function subscribe(callback: () => void) {
+  const mql = window.matchMedia("(max-width: 767px)");
+  mql.addEventListener("change", callback);
+  return () => mql.removeEventListener("change", callback);
+}
+
+function getSnapshot() {
+  return window.matchMedia("(max-width: 767px)").matches;
+}
+
 function useIsBelowMd() {
-  const [isBelowMd, setIsBelowMd] = useState(false); // SSR-safe default
-
-  useEffect(() => {
-    const mediaQueryList = window.matchMedia("(max-width: 767px)");
-    setIsBelowMd(mediaQueryList.matches); // sync actual value on mount (client only)
-
-    const handler = (e: MediaQueryListEvent) => setIsBelowMd(e.matches);
-    mediaQueryList.addEventListener("change", handler);
-
-    return () => mediaQueryList.removeEventListener("change", handler);
-  }, []);
-
-  return isBelowMd;
+  return useSyncExternalStore(subscribe, getSnapshot, () => false);
 }
 
 const item = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { duration: 1.25 } },
+};
+
+const itemMotionReduced = {
+  hidden: { opacity: 1 },
+  show: { opacity: 1 },
 };
 
 function ProficiencyListItem({
@@ -69,7 +72,7 @@ function ProficiencyListItem({
       className="bg-background w-full md:w-fit"
       style={{ boxShadow: "4px 4px var(--foreground)" }}
       ref={liRef}
-      variants={item}
+      variants={motionReduced ? itemMotionReduced : item}
     >
       <div className="bg-background z-1 flex h-12.5 items-center gap-3 border px-3 py-2 sm:h-16 sm:px-4">
         {imgSrc && (
@@ -112,12 +115,18 @@ const container = {
   },
 };
 
+const containerMotionReduced = {
+  hidden: { opacity: 1 },
+  show: { opacity: 1 },
+};
+
 export default function Proficiencies({
   proficiencies,
 }: {
   proficiencies: Record<string, any>[];
 }) {
   const ulRef = useRef<HTMLUListElement>(null);
+  const { motionReduced } = useMotionPreference();
 
   return (
     <section className="mx-auto w-full max-w-120 px-3 py-7 md:max-w-full md:px-8 lg:px-12">
@@ -128,7 +137,7 @@ export default function Proficiencies({
       </h2>
       <motion.ul
         ref={ulRef}
-        variants={container}
+        variants={motionReduced ? containerMotionReduced : container}
         initial="hidden"
         whileInView="show"
         className="flex w-full flex-col items-center gap-2 md:flex-row md:flex-wrap"

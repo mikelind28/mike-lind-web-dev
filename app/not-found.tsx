@@ -8,7 +8,7 @@ export default function NotFound() {
   return (
     <div className="flex flex-col items-center justify-center gap-8 p-8 text-center">
       <h2 className="2xs:text-xl text-lg font-bold sm:text-2xl">
-        Couldn't find "{path.replace("/portfolio/", "")}".
+        Couldn&apos;t find &quot;{path}&quot;.
       </h2>
       <Link
         href="/"

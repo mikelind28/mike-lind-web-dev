@@ -19,7 +19,7 @@ export default function WavyDivider() {
       fill="none"
       initial={{ x: "-40px", scaleY: 0.75 }}
       animate={{
-        x: motionReduced ? "40px" : "40px",
+        x: motionReduced ? "-40px" : "40px",
         scaleY: motionReduced ? 0.75 : 1.5,
       }}
       transition={{

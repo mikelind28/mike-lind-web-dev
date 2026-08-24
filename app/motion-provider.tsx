@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect } from "react";
+import { useSyncExternalStore } from "react";
 import { useReducedMotion } from "motion/react";
 
 type MotionContextType = {
@@ -10,47 +11,87 @@ type MotionContextType = {
 
 const MotionContext = createContext<MotionContextType | undefined>(undefined);
 
+// ---- external store: reads/writes the manual override in localStorage ----
+
+type MotionOverride = { hasOverride: boolean; value: boolean };
+
+function readMotionOverride(): MotionOverride {
+  const manual = localStorage.getItem("motionReducedManualOverride") === "true";
+  const stored = localStorage.getItem("motionReduced");
+  return manual && stored !== null
+    ? { hasOverride: true, value: stored === "true" }
+    : { hasOverride: false, value: false };
+}
+
+// Cached snapshot object — getSnapshot must return the SAME reference
+// between calls if nothing changed, or useSyncExternalStore will think
+// it changed on every render and loop.
+let cachedSnapshot: MotionOverride | null = null;
+const listeners = new Set<() => void>();
+
+function refreshSnapshot() {
+  cachedSnapshot = readMotionOverride();
+  listeners.forEach((listener) => listener());
+}
+
+function subscribe(callback: () => void) {
+  listeners.add(callback);
+  window.addEventListener("storage", refreshSnapshot); // cross-tab updates
+  return () => {
+    listeners.delete(callback);
+    window.removeEventListener("storage", refreshSnapshot);
+  };
+}
+
+function getSnapshot(): MotionOverride {
+  if (cachedSnapshot === null) {
+    cachedSnapshot = readMotionOverride(); // first client read — pulls from localStorage
+  }
+  return cachedSnapshot;
+}
+
+const SERVER_SNAPSHOT: MotionOverride = { hasOverride: false, value: false };
+
+function getServerSnapshot(): MotionOverride {
+  return SERVER_SNAPSHOT; // no localStorage on the server
+}
+
+function setMotionOverride(next: boolean) {
+  localStorage.setItem("motionReduced", String(next));
+  localStorage.setItem("motionReducedManualOverride", "true");
+  refreshSnapshot(); // notify listeners in THIS tab (storage event won't)
+}
+
+// ---- provider ----
+
 export function MotionProvider({ children }: { children: React.ReactNode }) {
   const systemPrefersReduced = useReducedMotion();
-  const [motionReduced, setMotionReduced] = useState(true);
-  const [hydrated, setHydrated] = useState(false);
+  const override = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
-  // Follow system preference until the user manually overrides
-  useEffect(() => {
-    const stored = localStorage.getItem("motionReduced");
-    const hasManualOverride =
-      localStorage.getItem("motionReducedManual") === "true";
-
-    if (hasManualOverride && stored !== null) {
-      setMotionReduced(stored === "true");
-    } else {
-      setMotionReduced(!!systemPrefersReduced);
-    }
-    setHydrated(true);
-  }, [systemPrefersReduced]);
+  // Derived during render — no effect needed for this part at all.
+  const motionReduced = override.hasOverride
+    ? override.value
+    : !!systemPrefersReduced;
 
   const toggleMotionReduced = () => {
-    setMotionReduced((prev) => {
-      const next = !prev;
-      localStorage.setItem("motionReduced", String(next));
-      localStorage.setItem("motionReducedManual", "true"); // mark as an explicit user choice
-      return next;
-    });
+    setMotionOverride(!motionReduced);
   };
 
+  // This one stays as a real effect: it's an imperative DOM mutation
+  // (a side effect), not a setState call, so the lint rule doesn't apply.
   useEffect(() => {
-    if (hydrated) {
-      document.documentElement.dataset.motion = motionReduced
-        ? "reduced"
-        : "full";
-    }
-  }, [motionReduced, hydrated]);
+    document.documentElement.dataset.motion = motionReduced
+      ? "reduced"
+      : "full";
+  }, [motionReduced]);
 
   return (
     <MotionContext.Provider value={{ motionReduced, toggleMotionReduced }}>
-      {/* <MotionConfig reducedMotion={motionReduced ? 'always' : 'never'}> */}
       {children}
-      {/* </MotionConfig> */}
     </MotionContext.Provider>
   );
 }
